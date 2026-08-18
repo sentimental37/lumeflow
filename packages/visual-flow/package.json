@@ -2,6 +2,25 @@
   "name": "@lumeflow/core",
   "version": "0.1.0",
   "description": "Framework-neutral visual diagram model, layout engine, SVG renderer, themes, motion, and export utilities.",
+  "license": "MIT",
+  "author": "LumeFlow contributors",
+  "homepage": "https://sentimental37.github.io/lumeflow-showcase/",
+  "bugs": {
+    "url": "https://github.com/sentimental37/lumeflow/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sentimental37/lumeflow.git",
+    "directory": "packages/visual-flow"
+  },
+  "keywords": [
+    "architecture-diagrams",
+    "diagram-as-code",
+    "diagramming",
+    "svg",
+    "typescript",
+    "visualization"
+  ],
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

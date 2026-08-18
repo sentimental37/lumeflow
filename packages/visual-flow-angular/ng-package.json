@@ -1,6 +1,9 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "./dist",
+  "assets": [
+    "LICENSE"
+  ],
   "lib": {
     "entryFile": "src/public-api.ts",
     "flatModuleFile": "visual-flow-angular"

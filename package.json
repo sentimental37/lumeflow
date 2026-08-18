@@ -27,7 +27,8 @@
     "build:site": "turbo run build --filter=@lumeflow/studio --filter=@lumeflow/angular-showcase && node scripts/assemble-site.mjs",
     "preview:site": "vite site-dist --host 127.0.0.1 --port 4200 --strictPort",
     "pack": "node scripts/pack.mjs",
-    "verify:distribution": "node scripts/verify-distribution.mjs"
+    "verify:distribution": "node scripts/verify-distribution.mjs",
+    "release:check": "npm run verify && npm run build:site && npm run pack && npm run verify:distribution"
   },
   "devDependencies": {
     "@types/node": "^22.15.0",

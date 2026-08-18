@@ -2,9 +2,14 @@
 
 **Architecture diagrams that look designed—without giving up code, portability, or framework choice.**
 
-[Live showcase](https://sentimental37.github.io/lumeflow-showcase/) · [Open the visual builder](https://sentimental37.github.io/lumeflow-showcase/builder/) · [Framework guide](docs/FRAMEWORKS.md) · [MIT License](LICENSE)
+[Live showcase](https://sentimental37.github.io/lumeflow-showcase/) · [Open the visual builder](https://sentimental37.github.io/lumeflow-showcase/builder/) · [Framework guide](docs/FRAMEWORKS.md) · [Roadmap](ROADMAP.md) · [MIT License](LICENSE)
 
-![LumeFlow Studio visual builder](docs/screenshots/builder-studio.png)
+[![CI](https://github.com/sentimental37/lumeflow/actions/workflows/ci.yml/badge.svg)](https://github.com/sentimental37/lumeflow/actions/workflows/ci.yml)
+![Release](https://img.shields.io/badge/release-v0.1.0-6d8cff)
+![Node](https://img.shields.io/badge/node-%3E%3D20.19-31e6c0)
+![License](https://img.shields.io/badge/license-MIT-68e59f)
+
+![LumeFlow — visual architecture diagrams that stay portable and source-controlled](docs/brand/lumeflow-social-preview.png)
 
 LumeFlow is a complete diagram system for architecture, workflow, data-flow, sequence, and lifecycle visuals. A readable JSON document is the source of truth. The same source can be edited in the browser, rendered in Angular, React, Next.js, or a Web Component, validated in CI, exported for documents, and created by an agent instead of Mermaid.
 
@@ -31,6 +36,12 @@ LumeFlow is a complete diagram system for architecture, workflow, data-flow, seq
 | `@lumeflow/angular` | Angular 17–22 standalone component in Angular Package Format with SSR guards. |
 | `@lumeflow/cli` | Validate, inspect, render, export, emit the schema, and migrate Mermaid topology. |
 | Agent skill | Instructions, schema reference, starter source, and a rendering helper for agent-authored diagrams. |
+
+## See the builder in 22 seconds
+
+![LumeFlow builder walkthrough: template, connections, themes, portable JSON, and export](docs/brand/lumeflow-builder-demo.gif)
+
+[Open the interactive builder](https://sentimental37.github.io/lumeflow-showcase/builder/) · [Download the HD MP4](docs/brand/lumeflow-builder-demo.mp4)
 
 ![LumeFlow dark showcase](docs/screenshots/angular-demo.png)
 
@@ -162,6 +173,8 @@ The Properties inspector lists every incoming and outgoing connection for the se
 
 ![LumeFlow component connection editor](docs/screenshots/builder-connections.png)
 
+![LumeFlow Studio visual builder](docs/screenshots/builder-studio.png)
+
 Drafts are stored locally in the browser and restored automatically. The builder does not require an account or backend.
 
 ## CLI
@@ -217,7 +230,7 @@ npm run verify:distribution
 
 ## Deployment
 
-`npm run build:site` assembles one portable static artifact in `site-dist`: the Angular showcase at `/` and LumeFlow Studio at `/builder/`. The public build is hosted from the dedicated [`lumeflow-showcase`](https://github.com/sentimental37/lumeflow-showcase) GitHub Pages repository so this source repository can remain private.
+`npm run build:site` assembles one portable static artifact in `site-dist`: the Angular showcase at `/` and LumeFlow Studio at `/builder/`. The public build is hosted from the dedicated [`lumeflow-showcase`](https://github.com/sentimental37/lumeflow-showcase) GitHub Pages repository, while this repository remains the public source of truth.
 
 The root [`vercel.json`](vercel.json) describes the same artifact for teams that prefer Vercel. It can be deployed directly from this repository after connecting a Vercel account, or with `vercel --prod`.
 
@@ -232,6 +245,8 @@ The root [`vercel.json`](vercel.json) describes the same artifact for teams that
 ## Status
 
 LumeFlow is at `0.1.0` and under active development. Public npm publication, collaborative cloud storage, and real-time multi-user editing are not part of the current release.
+
+See the [roadmap](ROADMAP.md), [changelog](CHANGELOG.md), [release process](docs/RELEASING.md), and [support guide](SUPPORT.md). Questions and design discussions belong in [GitHub Discussions](https://github.com/sentimental37/lumeflow/discussions); security reports follow the private process in [SECURITY.md](SECURITY.md).
 
 ## License
 

@@ -2,6 +2,25 @@
   "name": "@lumeflow/next",
   "version": "0.1.0",
   "description": "Next.js App Router and Pages Router adapters for server-rendered and interactive @lumeflow/core diagrams.",
+  "license": "MIT",
+  "author": "LumeFlow contributors",
+  "homepage": "https://sentimental37.github.io/lumeflow-showcase/",
+  "bugs": {
+    "url": "https://github.com/sentimental37/lumeflow/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sentimental37/lumeflow.git",
+    "directory": "packages/visual-flow-next"
+  },
+  "keywords": [
+    "nextjs",
+    "react",
+    "architecture-diagrams",
+    "diagram-as-code",
+    "server-rendering",
+    "typescript"
+  ],
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
