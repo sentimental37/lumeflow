@@ -1,6 +1,7 @@
 node_modules/
 dist/
 .turbo/
+.angular/
 .next/
 coverage/
 artifacts/
