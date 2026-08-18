@@ -1,0 +1,7 @@
+{
+  "name": "visual-flow-next-integration",
+  "private": true,
+  "scripts": {
+    "build": "next build"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "name": "@sentimental37/visual-flow",
+  "version": "0.1.0",
+  "description": "Framework-neutral visual diagram model, layout engine, SVG renderer, themes, motion, and export utilities.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./element": {
+      "types": "./dist/element.d.ts",
+      "import": "./dist/element.js",
+      "require": "./dist/element.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "examples"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "node --test test/*.test.mjs",
+    "clean": "rimraf dist .turbo"
+  },
+  "dependencies": {
+    "@dagrejs/dagre": "^3.1.1"
+  },
+  "devDependencies": {
+    "jsdom": "^26.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

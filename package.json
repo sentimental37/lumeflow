@@ -1,0 +1,42 @@
+{
+  "name": "visual-flow-kit",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A framework-neutral diagram engine, web adapters, visual builder, CLI, and agent skill for source-controlled architecture diagrams.",
+  "license": "MIT",
+  "author": "sentimental37",
+  "packageManager": "npm@10.9.2",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sentimental37/visual-flow-kit.git"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "verify": "npm run build && npm run typecheck && npm test",
+    "clean": "turbo run clean",
+    "dev": "npm run dev:studio",
+    "dev:studio": "npm run dev --workspace @sentimental37/visual-flow-studio",
+    "dev:gallery": "npm run dev --workspace @sentimental37/visual-flow-gallery",
+    "pack": "node scripts/pack.mjs",
+    "verify:distribution": "node scripts/verify-distribution.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "rimraf": "^6.0.1",
+    "tsup": "^8.5.1",
+    "turbo": "^2.10.4",
+    "typescript": "5.9.3"
+  },
+  "engines": {
+    "node": ">=20.19"
+  },
+  "overrides": {
+    "esbuild": "^0.28.2"
+  }
+}

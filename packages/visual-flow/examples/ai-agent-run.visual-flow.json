@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "ai-agent-run",
+  "kind": "dataflow",
+  "title": "Governed AI Agent Run",
+  "description": "A governed agent turns intent into a reviewed, observable result.",
+  "layout": { "mode": "grid", "direction": "LR", "columns": 4, "gapX": 88, "gapY": 78 },
+  "theme": "porcelain-light",
+  "motion": "none",
+  "nodes": [
+    { "id": "prompt", "label": "User Intent", "description": "Goal and context", "variant": "client", "row": 0, "column": 0 },
+    { "id": "knowledge", "label": "Knowledge Base", "description": "Grounded sources", "variant": "data", "row": 1, "column": 0 },
+    { "id": "planner", "label": "Agent Planner", "description": "Plan and delegation", "variant": "service", "row": 0, "column": 1 },
+    { "id": "policy", "label": "Policy Guard", "description": "Tools and permissions", "variant": "security", "row": 1, "column": 1 },
+    { "id": "tools", "label": "Tool Runtime", "description": "APIs and sandboxes", "variant": "external", "row": 0, "column": 2 },
+    { "id": "review", "label": "Human Review", "description": "Approve sensitive work", "variant": "decision", "row": 1, "column": 2 },
+    { "id": "result", "label": "Verified Result", "description": "Answer and evidence", "variant": "event", "row": 0, "column": 3 },
+    { "id": "trace", "label": "Run Trace", "description": "Steps, cost, lineage", "variant": "data", "row": 1, "column": 3 }
+  ],
+  "edges": [
+    { "from": "prompt", "to": "planner", "label": "request", "variant": "accent" },
+    { "from": "knowledge", "to": "planner", "label": "context", "variant": "accent" },
+    { "from": "planner", "to": "policy", "label": "proposed action", "variant": "warning" },
+    { "from": "policy", "to": "tools", "label": "scoped call", "variant": "accent" },
+    { "from": "tools", "to": "review", "label": "sensitive change", "variant": "warning" },
+    { "from": "review", "to": "result", "label": "approved", "variant": "success" },
+    { "from": "result", "to": "trace", "label": "evidence", "variant": "muted", "route": "orthogonal" }
+  ],
+  "groups": [
+    { "id": "governance", "label": "Governed execution boundary", "nodeIds": ["planner", "policy", "tools", "review", "result"], "variant": "security" }
+  ]
+}

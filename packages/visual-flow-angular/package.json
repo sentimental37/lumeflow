@@ -1,0 +1,31 @@
+{
+  "name": "@sentimental37/visual-flow-angular",
+  "version": "0.1.0",
+  "description": "Standalone Angular component for rendering portable @sentimental37/visual-flow diagrams with browser-safe lifecycle management and SSR guards.",
+  "type": "module",
+  "sideEffects": false,
+  "scripts": {
+    "build": "ng-packagr -p ng-package.json",
+    "typecheck": "ngc -p tsconfig.lib.json --noEmit",
+    "test": "node --test test/*.test.mjs",
+    "clean": "rimraf dist .turbo test/.out"
+  },
+  "dependencies": {
+    "@sentimental37/visual-flow": "^0.1.0",
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "@angular/common": "^17.3 || ^18.2 || ^19.2 || ^20 || ^21 || ^22",
+    "@angular/core": "^17.3 || ^18.2 || ^19.2 || ^20 || ^21 || ^22"
+  },
+  "devDependencies": {
+    "@angular/common": "21.2.20",
+    "@angular/compiler-cli": "21.2.20",
+    "@angular/core": "21.2.20",
+    "ng-packagr": "21.2.7",
+    "typescript": "5.9.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "name": "@sentimental37/visual-flow-next",
+  "version": "0.1.0",
+  "description": "Next.js App Router and Pages Router adapters for server-rendered and interactive @sentimental37/visual-flow diagrams.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./client": {
+      "types": "./dist/client.d.ts",
+      "import": "./dist/client.js",
+      "require": "./dist/client.cjs"
+    },
+    "./styles.css": "./dist/client.css"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": ["*.css"],
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "npm run test:unit && npm run test:next",
+    "test:unit": "node --test test/*.test.mjs",
+    "test:next": "next build integration/next-app",
+    "clean": "rimraf dist .turbo integration/next-app/.next"
+  },
+  "dependencies": {
+    "@sentimental37/visual-flow": "^0.1.0",
+    "@sentimental37/visual-flow-react": "^0.1.0"
+  },
+  "peerDependencies": {
+    "next": "^14.2 || ^15 || ^16",
+    "react": "^18.2 || ^19",
+    "react-dom": "^18.2 || ^19"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "next": "^16.3.1",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "replace-me",
+  "kind": "architecture",
+  "title": "Replace me",
+  "description": "Describe what the diagram proves and what it intentionally omits.",
+  "layout": {
+    "mode": "dagre",
+    "direction": "LR",
+    "rankSeparation": 116,
+    "nodeSeparation": 72
+  },
+  "theme": "midnight-current",
+  "motion": "none",
+  "nodes": [
+    { "id": "client", "label": "Client", "description": "Entry point", "variant": "client", "icon": "CL" },
+    { "id": "service", "label": "Service", "description": "Primary capability", "variant": "service", "icon": "SV" }
+  ],
+  "edges": [
+    { "from": "client", "to": "service", "label": "request", "variant": "accent", "route": "smoothstep" }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "@sentimental37/visual-flow-gallery",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Visual Flow Kit interactive demo gallery.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "node --test test/*.test.mjs",
+    "clean": "rimraf dist .turbo"
+  },
+  "dependencies": {
+    "@sentimental37/visual-flow": "^0.1.0",
+    "@sentimental37/visual-flow-react": "^0.1.0",
+    "@xyflow/react": "^12.11.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^6.0.5",
+    "vite": "^8.2.1"
+  }
+}

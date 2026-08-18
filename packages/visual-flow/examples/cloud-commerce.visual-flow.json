@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "cloud-commerce",
+  "kind": "architecture",
+  "title": "Cloud Commerce Platform",
+  "description": "A live order journey from storefront to fulfillment and insight.",
+  "layout": { "mode": "dagre", "direction": "LR", "rankSeparation": 126, "nodeSeparation": 78 },
+  "theme": "midnight-current",
+  "motion": "flow",
+  "nodes": [
+    { "id": "shopper", "label": "Shopper", "description": "Web and mobile", "variant": "client", "icon": "SH", "badges": ["React"] },
+    { "id": "storefront", "label": "Storefront", "description": "Personalized catalog", "variant": "client", "icon": "UI", "badges": ["Next.js"] },
+    { "id": "gateway", "label": "API Gateway", "description": "Edge routing", "variant": "security", "icon": "GW" },
+    { "id": "orders", "label": "Order Service", "description": "Checkout and lifecycle", "variant": "service", "icon": "OS" },
+    { "id": "payments", "label": "Payment Provider", "description": "Secure authorization", "variant": "external", "icon": "PX" },
+    { "id": "events", "label": "Event Stream", "description": "Durable order events", "variant": "event", "icon": "EV", "badges": ["Kafka"] },
+    { "id": "fulfillment", "label": "Fulfillment", "description": "Inventory and shipping", "variant": "service", "icon": "FX" },
+    { "id": "warehouse", "label": "Analytics Lake", "description": "Operational insight", "variant": "data", "icon": "DB" }
+  ],
+  "edges": [
+    { "from": "shopper", "to": "storefront", "label": "browse", "variant": "accent", "animated": true },
+    { "from": "storefront", "to": "gateway", "label": "checkout", "variant": "accent", "animated": true },
+    { "from": "gateway", "to": "orders", "label": "create order", "variant": "accent", "animated": true, "particles": 2 },
+    { "from": "orders", "to": "payments", "label": "authorize", "variant": "warning", "route": "bezier" },
+    { "from": "orders", "to": "events", "label": "order placed", "variant": "success", "animated": true },
+    { "from": "events", "to": "fulfillment", "label": "reserve and ship", "variant": "success", "animated": true },
+    { "from": "events", "to": "warehouse", "label": "stream", "variant": "accent", "animated": true }
+  ],
+  "groups": [
+    { "id": "platform", "label": "Owned commerce platform", "nodeIds": ["storefront", "gateway", "orders", "events", "fulfillment", "warehouse"], "variant": "emphasis" }
+  ],
+  "metadata": { "tags": ["commerce", "events", "cloud"] }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "@sentimental37/visual-flow-cli",
+  "version": "0.1.0",
+  "description": "CLI and migration helpers for validating, inspecting, and exporting Visual Flow diagram specifications.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "bin": {
+    "visual-flow": "./dist/cli.js"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "node --test test/*.test.mjs",
+    "clean": "rimraf dist .turbo"
+  },
+  "dependencies": {
+    "@sentimental37/visual-flow": "^0.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

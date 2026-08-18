@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "event-commerce",
+  "kind": "workflow",
+  "title": "Event-Driven Order Journey",
+  "description": "An order moves across independent teams through durable events and observable outcomes.",
+  "layout": { "mode": "lanes", "direction": "LR", "gapX": 82, "gapY": 42 },
+  "theme": "executive-slate",
+  "motion": "trace",
+  "lanes": [
+    { "id": "experience", "label": "Customer experience", "order": 0 },
+    { "id": "platform", "label": "Commerce platform", "order": 1 },
+    { "id": "operations", "label": "Operations", "order": 2 }
+  ],
+  "nodes": [
+    { "id": "cart", "label": "Submit Cart", "description": "Web checkout", "lane": "experience", "variant": "client", "icon": "01" },
+    { "id": "order", "label": "Create Order", "description": "Validated command", "lane": "platform", "variant": "service", "icon": "02" },
+    { "id": "payment", "label": "Authorize Payment", "description": "Idempotent request", "lane": "platform", "variant": "security", "icon": "03" },
+    { "id": "publish", "label": "Publish Event", "description": "Order accepted", "lane": "platform", "variant": "event", "icon": "04" },
+    { "id": "reserve", "label": "Reserve Stock", "description": "Inventory hold", "lane": "operations", "variant": "data", "icon": "05" },
+    { "id": "ship", "label": "Create Shipment", "description": "Trackable delivery", "lane": "operations", "variant": "external", "icon": "06" }
+  ],
+  "edges": [
+    { "from": "cart", "to": "order", "label": "checkout", "variant": "accent", "animated": true },
+    { "from": "order", "to": "payment", "label": "authorize", "variant": "warning", "route": "smoothstep" },
+    { "from": "payment", "to": "publish", "label": "approved", "variant": "success" },
+    { "from": "publish", "to": "reserve", "label": "order.accepted", "variant": "accent", "animated": true },
+    { "from": "reserve", "to": "ship", "label": "stock held", "variant": "success", "animated": true }
+  ],
+  "annotations": [
+    { "id": "replay", "text": "Every consumer can replay from the event log", "x": 42, "y": 700, "variant": "info" }
+  ]
+}
