@@ -53,3 +53,19 @@ test("the showcase exposes every theme color token and export format", async () 
     assert.match(component, new RegExp(`id: "${format}"`));
   }
 });
+
+test("the showcase provides persistent light and dark site themes independently from diagram themes", async () => {
+  const [component, template] = await Promise.all([
+    readFile(componentPath, "utf8"),
+    readFile(templatePath, "utf8"),
+  ]);
+
+  assert.match(component, /signal<SiteTheme>\("dark"\)/);
+  assert.match(component, /visual-flow-site-theme/);
+  assert.match(component, /prefers-color-scheme: light/);
+  assert.match(component, /setSiteTheme/);
+  assert.match(template, /data-site-theme/);
+  assert.match(template, /aria-label="Site appearance"/);
+  assert.match(template, /setSiteTheme\('light'\)/);
+  assert.match(template, /setSiteTheme\('dark'\)/);
+});

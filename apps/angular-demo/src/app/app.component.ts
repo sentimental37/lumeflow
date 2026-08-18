@@ -24,6 +24,7 @@ import {
 } from "./diagrams";
 
 type BuiltInThemeName = "midnight-current" | "porcelain-light" | "executive-slate";
+type SiteTheme = "light" | "dark";
 type ThemeColorKey =
   | "background"
   | "backgroundAlt"
@@ -102,6 +103,7 @@ export class AppComponent {
   ];
 
   protected readonly activeKey = signal<AngularDemoKey>("platform");
+  protected readonly siteTheme = signal<SiteTheme>("dark");
   protected readonly ready = signal(false);
   protected readonly error = signal<string | null>(null);
   protected readonly selectedPreset = signal<BuiltInThemeName>("midnight-current");
@@ -160,6 +162,22 @@ export class AppComponent {
   protected readonly activeCode = computed(() => this.codeSamples.find((item) => item.id === this.activeCodeId()) ?? this.codeSamples[0]);
   protected readonly apiEntryCount = this.apiPackages.reduce((total, item) => total + item.entries.length, 0);
   protected readonly schemaFieldCount = this.schemaGroups.reduce((total, item) => total + item.fields.length, 0);
+
+  public constructor() {
+    if (typeof window === "undefined") return;
+    const saved = window.localStorage.getItem("visual-flow-site-theme");
+    const initial: SiteTheme = saved === "light" || saved === "dark"
+      ? saved
+      : window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+    this.siteTheme.set(initial);
+    this.applyDocumentTheme(initial);
+  }
+
+  protected setSiteTheme(theme: SiteTheme): void {
+    this.siteTheme.set(theme);
+    if (typeof window !== "undefined") window.localStorage.setItem("visual-flow-site-theme", theme);
+    this.applyDocumentTheme(theme);
+  }
 
   protected selectDemo(key: AngularDemoKey): void {
     const next = this.demos.find((demo) => demo.key === key);
@@ -264,5 +282,11 @@ export class AppComponent {
     } catch {
       this.copied.set(null);
     }
+  }
+
+  private applyDocumentTheme(theme: SiteTheme): void {
+    if (typeof document === "undefined") return;
+    document.documentElement.dataset["siteTheme"] = theme;
+    document.documentElement.style.colorScheme = theme;
   }
 }

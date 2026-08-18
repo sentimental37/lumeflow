@@ -8,6 +8,8 @@ Sleek architecture and flow diagrams with portable JSON source, deterministic la
 
 ![Visual Flow Kit Angular demo](docs/screenshots/angular-demo.png)
 
+![Visual Flow Kit Angular demo in light mode](docs/screenshots/angular-demo-light.png)
+
 ![Visual Flow Kit capability atlas](docs/screenshots/angular-capability-atlas.png)
 
 ## What is included

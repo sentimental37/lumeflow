@@ -1,4 +1,4 @@
-<main>
+<main [attr.data-site-theme]="siteTheme()">
   <header class="topbar">
     <a class="brand" href="#overview" aria-label="Visual Flow Kit home">
       <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -12,10 +12,16 @@
       <a href="#api">API</a>
       <a href="#frameworks">Frameworks</a>
     </nav>
-    <a class="repo-link" href="https://github.com/sentimental37/visual-flow-kit">
-      <span class="github-dot" aria-hidden="true"></span>
-      GitHub <b>↗</b>
-    </a>
+    <div class="topbar-actions">
+      <div class="site-theme-switch" role="group" aria-label="Site appearance">
+        <button type="button" [class.active]="siteTheme() === 'light'" [attr.aria-pressed]="siteTheme() === 'light'" (click)="setSiteTheme('light')"><span aria-hidden="true">☼</span><em>Light</em></button>
+        <button type="button" [class.active]="siteTheme() === 'dark'" [attr.aria-pressed]="siteTheme() === 'dark'" (click)="setSiteTheme('dark')"><span aria-hidden="true">◐</span><em>Dark</em></button>
+      </div>
+      <a class="repo-link" href="https://github.com/sentimental37/visual-flow-kit">
+        <span class="github-dot" aria-hidden="true"></span>
+        GitHub <b>↗</b>
+      </a>
+    </div>
   </header>
 
   <section class="hero" id="overview">

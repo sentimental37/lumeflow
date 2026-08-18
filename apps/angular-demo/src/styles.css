@@ -8,6 +8,7 @@
 
 * { box-sizing: border-box; }
 html { min-width: 320px; scroll-behavior: smooth; background: #050b12; }
+html[data-site-theme="light"] { color-scheme: light; background: #eef3f5; }
 
 body {
   min-width: 320px;
@@ -19,6 +20,15 @@ body {
     radial-gradient(circle at 12% 7%, rgba(49, 230, 192, 0.075), transparent 25%),
     radial-gradient(circle at 88% 4%, rgba(109, 140, 255, 0.065), transparent 23%),
     #050b12;
+  background-size: 34px 34px, 34px 34px, auto, auto, auto;
+}
+html[data-site-theme="light"] body {
+  background:
+    linear-gradient(rgba(44, 81, 94, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(44, 81, 94, 0.025) 1px, transparent 1px),
+    radial-gradient(circle at 12% 7%, rgba(0, 145, 126, 0.08), transparent 25%),
+    radial-gradient(circle at 88% 4%, rgba(59, 99, 190, 0.07), transparent 23%),
+    #eef3f5;
   background-size: 34px 34px, 34px 34px, auto, auto, auto;
 }
 
