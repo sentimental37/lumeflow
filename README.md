@@ -2,7 +2,7 @@
 
 **Architecture diagrams that look designed—without giving up code, portability, or framework choice.**
 
-[Live showcase](https://lumeflow.vercel.app/) · [Open the visual builder](https://lumeflow.vercel.app/builder/) · [Framework guide](docs/FRAMEWORKS.md) · [MIT License](LICENSE)
+[Live showcase](https://sentimental37.github.io/lumeflow-showcase/) · [Open the visual builder](https://sentimental37.github.io/lumeflow-showcase/builder/) · [Framework guide](docs/FRAMEWORKS.md) · [MIT License](LICENSE)
 
 ![LumeFlow Studio visual builder](docs/screenshots/builder-studio.png)
 
@@ -23,8 +23,8 @@ LumeFlow is a complete diagram system for architecture, workflow, data-flow, seq
 
 | Surface | What it provides |
 | --- | --- |
-| [Showcase](https://lumeflow.vercel.app/) | Interactive themes, layouts, routing, motion, exports, complete API documentation, framework recipes, and the 30-node capability atlas. |
-| [Studio](https://lumeflow.vercel.app/builder/) | Full-screen drag-and-drop builder with templates, connection editing, inspectors, theme workbench, JSON editing, validation, local recovery, and export. |
+| [Showcase](https://sentimental37.github.io/lumeflow-showcase/) | Interactive themes, layouts, routing, motion, exports, complete API documentation, framework recipes, and the 30-node capability atlas. |
+| [Studio](https://sentimental37.github.io/lumeflow-showcase/builder/) | Full-screen drag-and-drop builder with templates, connection editing, inspectors, theme workbench, JSON editing, validation, local recovery, and export. |
 | `@lumeflow/core` | Portable model, validation, Dagre/grid/lane/manual layouts, SVG/HTML/raster export, themes, motion, DOM mounting, and a Web Component. |
 | `@lumeflow/react` | React 18/19 editable canvas, selection, connection editing, pan/zoom, controls, and minimap. |
 | `@lumeflow/next` | Next.js App Router and Pages Router static/server rendering plus an explicit client canvas entry. |
@@ -213,7 +213,9 @@ npm run verify:distribution
 
 ## Deployment
 
-The root [`vercel.json`](vercel.json) builds one static production artifact: the Angular showcase at `/` and LumeFlow Studio at `/builder/`. Vercel can deploy it directly from the repository or with `vercel --prod`.
+`npm run build:site` assembles one portable static artifact in `site-dist`: the Angular showcase at `/` and LumeFlow Studio at `/builder/`. The public build is hosted from the dedicated [`lumeflow-showcase`](https://github.com/sentimental37/lumeflow-showcase) GitHub Pages repository so this source repository can remain private.
+
+The root [`vercel.json`](vercel.json) describes the same artifact for teams that prefer Vercel. It can be deployed directly from this repository after connecting a Vercel account, or with `vercel --prod`.
 
 ## Security and data boundaries
 
