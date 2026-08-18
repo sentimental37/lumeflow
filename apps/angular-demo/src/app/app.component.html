@@ -1,75 +1,424 @@
 <main>
   <header class="topbar">
-    <a class="brand" href="https://github.com/sentimental37/visual-flow-kit" aria-label="Visual Flow Kit on GitHub">
+    <a class="brand" href="#overview" aria-label="Visual Flow Kit home">
       <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
       <span>Visual Flow <b>Kit</b></span>
+      <small>Angular reference</small>
     </a>
-    <div class="framework-pill"><span class="angular-mark">A</span> Native Angular adapter</div>
-    <a class="repo-link" href="https://github.com/sentimental37/visual-flow-kit">View repository <span>↗</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#playground">Playground</a>
+      <a href="#capabilities">Capability map</a>
+      <a href="#features">Features</a>
+      <a href="#api">API</a>
+      <a href="#frameworks">Frameworks</a>
+    </nav>
+    <a class="repo-link" href="https://github.com/sentimental37/visual-flow-kit">
+      <span class="github-dot" aria-hidden="true"></span>
+      GitHub <b>↗</b>
+    </a>
   </header>
 
-  <section class="hero">
+  <section class="hero" id="overview">
     <div class="hero-copy">
-      <p class="eyebrow">Angular integration showcase</p>
-      <h1>Architecture that feels <em>alive.</em></h1>
-      <p class="lede">Portable diagram JSON, rendered through a native standalone Angular component—with strict templates, zoneless change detection, pan, zoom, motion, and export.</p>
+      <p class="eyebrow"><span></span> Complete Angular showcase & API reference</p>
+      <h1>One diagram language.<br><em>Every visual possibility.</em></h1>
+      <p class="lede">
+        Design expressive architecture, workflow, data-flow, sequence, and lifecycle diagrams from portable JSON—then render, customize, edit, validate, and export them anywhere on the web.
+      </p>
+      <div class="hero-actions">
+        <a class="primary-action" href="#playground">Open the live playground <span>↓</span></a>
+        <a class="secondary-action" href="#api">Explore every API</a>
+      </div>
+      <div class="hero-proof">
+        <span><i class="status-dot"></i> Angular 17–22</span>
+        <span>Framework-neutral JSON</span>
+        <span>MIT licensed</span>
+      </div>
     </div>
-    <div class="facts" aria-label="Integration facts">
-      <div><strong>17–22</strong><span>Angular support</span></div>
-      <div><strong>0</strong><span>framework lock-in</span></div>
-      <div><strong>SVG</strong><span>crisp at any size</span></div>
+
+    <div class="hero-visual" aria-label="Visual Flow capability preview">
+      <div class="orbit orbit-one"></div>
+      <div class="orbit orbit-two"></div>
+      <div class="hero-node hero-node-core"><small>ENGINE</small><b>Visual Flow</b><span>portable visual system</span></div>
+      <div class="hero-node hero-node-a"><i>NG</i><b>Angular</b><span>native adapter</span></div>
+      <div class="hero-node hero-node-b"><i>&#123; &#125;</i><b>JSON</b><span>source of truth</span></div>
+      <div class="hero-node hero-node-c"><i>SVG</i><b>Export</b><span>pixel perfect</span></div>
+      <div class="hero-node hero-node-d"><i>18</i><b>Tokens</b><span>theme anything</span></div>
+      <svg class="hero-paths" viewBox="0 0 620 460" aria-hidden="true">
+        <defs><linearGradient id="hero-line" x1="0" x2="1"><stop stop-color="#31e6c0"/><stop offset="1" stop-color="#6d8cff"/></linearGradient></defs>
+        <path d="M310 230 C230 188 208 112 142 95"/><path d="M310 230 C392 184 420 114 486 96"/>
+        <path d="M310 230 C225 277 198 355 137 372"/><path d="M310 230 C396 277 427 353 494 370"/>
+        <circle r="3"><animateMotion dur="2.8s" repeatCount="indefinite" path="M310 230 C230 188 208 112 142 95"/></circle>
+        <circle r="3"><animateMotion dur="3.2s" repeatCount="indefinite" path="M310 230 C392 184 420 114 486 96"/></circle>
+      </svg>
+    </div>
+
+    <div class="hero-stats">
+      <div><strong>4</strong><span>layout engines</span></div>
+      <div><strong>18</strong><span>theme tokens</span></div>
+      <div><strong>6</strong><span>export formats</span></div>
+      <div><strong>{{ apiEntryCount }}</strong><span>documented APIs</span></div>
+      <div><strong>10</strong><span>web targets</span></div>
     </div>
   </section>
 
-  <section class="showcase" aria-labelledby="diagram-title">
-    <aside class="catalog">
-      <p class="section-label">Choose a story</p>
-      @for (demo of demos; track demo.key; let index = $index) {
-        <button type="button" [class.active]="activeKey() === demo.key" (click)="select(demo.key)">
-          <span class="item-index">0{{ index + 1 }}</span>
-          <span class="item-copy"><b>{{ demo.label }}</b><small>{{ demo.kicker }}</small></span>
-          <span class="arrow">→</span>
-        </button>
-      }
-      <div class="integration-note">
-        <span class="pulse"></span>
-        <div><b>Angular lifecycle owned</b><small>Safe updates, cleanup, and SSR guards are built into the adapter.</small></div>
+  <section class="section playground-section" id="playground">
+    <header class="section-heading split-heading">
+      <div>
+        <p class="eyebrow"><span></span> Live configuration laboratory</p>
+        <h2>Change everything.<br><em>Watch it render.</em></h2>
       </div>
-    </aside>
+      <p>Every control below updates the real Angular component and the same portable specification you ship to React, Next.js, custom elements, servers, or CI.</p>
+    </header>
 
-    <article class="canvas-card">
-      <header class="canvas-header">
-        <div>
-          <p>{{ active().kicker }}</p>
-          <h2 id="diagram-title">{{ active().spec.title }}</h2>
-          <span>{{ active().summary }}</span>
+    <div class="playground-frame">
+      <aside class="control-panel diagram-controls">
+        <div class="panel-heading">
+          <span class="panel-index">01</span>
+          <div><b>Diagram controls</b><small>Content · geometry · motion</small></div>
         </div>
-        <button type="button" class="export-button" (click)="exportSvg()" [disabled]="!ready()">Export SVG</button>
-      </header>
 
-      <div class="diagram-shell">
-        <div class="grid-glow"></div>
-        <visual-flow-diagram
-          [spec]="active().spec"
-          [options]="diagramOptions"
-          (visualFlowReady)="markReady()"
-          (visualFlowError)="reportError($event)"
-        />
+        <div class="control-group">
+          <label>Example story</label>
+          <div class="story-list">
+            @for (demo of demos; track demo.key; let index = $index) {
+              <button type="button" [class.active]="activeKey() === demo.key" (click)="selectDemo(demo.key)">
+                <span>0{{ index + 1 }}</span><b>{{ demo.label }}</b><small>{{ demo.kicker }}</small><i>→</i>
+              </button>
+            }
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label>Direction</label>
+          <div class="segmented four">
+            @for (item of directions; track item) {
+              <button type="button" [class.active]="direction() === item" [attr.aria-pressed]="direction() === item" (click)="setDirection(item)">{{ item }}</button>
+            }
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label>Connector route</label>
+          <div class="segmented two">
+            @for (item of routes; track item) {
+              <button type="button" [class.active]="route() === item" [attr.aria-pressed]="route() === item" (click)="setRoute(item)">{{ item }}</button>
+            }
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label>Motion</label>
+          <div class="segmented three">
+            @for (item of motionModes; track item) {
+              <button type="button" [class.active]="motion() === item" [attr.aria-pressed]="motion() === item" (click)="setMotion(item)">{{ item }}</button>
+            }
+          </div>
+        </div>
+
+        <div class="switch-list">
+          <button type="button" class="switch-row" (click)="toggleBackground()">
+            <span><b>Canvas grid</b><small>SVG background pattern</small></span>
+            <i [class.on]="showBackground()"><em></em></i>
+          </button>
+          <button type="button" class="switch-row" (click)="togglePanZoom()">
+            <span><b>Pan & zoom</b><small>Wheel and pointer controls</small></span>
+            <i [class.on]="panZoom()"><em></em></i>
+          </button>
+        </div>
+
+        <div class="validation-card" [class.invalid]="!validation().valid">
+          <span class="validation-icon">{{ validation().valid ? '✓' : '!' }}</span>
+          <div><b>{{ validation().valid ? 'Specification valid' : 'Needs attention' }}</b><small>{{ playgroundSpec().nodes.length }} nodes · {{ playgroundSpec().edges.length }} edges · {{ validation().issues.length }} issues</small></div>
+        </div>
+      </aside>
+
+      <article class="live-canvas">
+        <header class="canvas-toolbar">
+          <div>
+            <span class="live-pill"><i></i> LIVE</span>
+            <p>{{ active().kicker }}</p>
+            <h3>{{ active().spec.title }}</h3>
+          </div>
+          <div class="canvas-actions">
+            <button type="button" (click)="copySpec()">{{ copied() === 'spec' ? 'Copied' : 'Copy JSON' }}</button>
+            <button type="button" class="accent-button" (click)="exportCurrentSvg()" [disabled]="!ready()">Export SVG</button>
+          </div>
+        </header>
+        <div class="diagram-stage" [style.background]="theme().background">
+          <visual-flow-diagram
+            #playgroundDiagram
+            [spec]="playgroundSpec()"
+            [options]="diagramOptions()"
+            (visualFlowReady)="markReady()"
+            (visualFlowError)="reportError($event)"
+          />
+          <div class="interaction-hint"><span>↕</span> Wheel to zoom · drag to pan</div>
+        </div>
+        <footer class="canvas-status">
+          <span class="status" [class.error]="error()"><i></i>{{ error() ?? (ready() ? 'Angular component ready' : 'Rendering diagram…') }}</span>
+          <code>{{ playgroundSpec().id }}.visual-flow.json</code>
+          <span>{{ active().metric }}</span>
+        </footer>
+        <div class="export-dock">
+          <span><b>Export</b><small>Source, vector, raster, or standalone</small></span>
+          <div>
+            @for (format of exportFormats; track format.id) {
+              <button type="button" (click)="exportDiagram(format.id)">{{ format.label }}</button>
+            }
+          </div>
+          @if (exportState()) { <em>{{ exportState() }}</em> }
+        </div>
+      </article>
+
+      <aside class="control-panel theme-controls">
+        <div class="panel-heading">
+          <span class="panel-index">02</span>
+          <div><b>Theme laboratory</b><small>All 18 design tokens</small></div>
+          <button type="button" class="reset-button" (click)="resetTheme()">Reset</button>
+        </div>
+
+        <div class="control-group">
+          <label>Built-in themes</label>
+          <div class="preset-list">
+            @for (preset of themePresets; track preset.id) {
+              <button type="button" [class.active]="selectedPreset() === preset.id && !customizedTheme()" (click)="applyPreset(preset.id)">
+                <span class="swatches">@for (color of preset.colors; track color) { <i [style.background]="color"></i> }</span>
+                <span><b>{{ preset.label }}</b><small>{{ preset.description }}</small></span>
+                <em>{{ selectedPreset() === preset.id && !customizedTheme() ? '✓' : '' }}</em>
+              </button>
+            }
+          </div>
+        </div>
+
+        <div class="control-group token-group">
+          <label>Color tokens <span>{{ customizedTheme() ? 'Custom' : 'Preset' }}</span></label>
+          <div class="color-token-grid">
+            @for (token of colorTokens; track token.key) {
+              <label class="color-token" [attr.title]="token.group + ' · ' + token.key">
+                <input type="color" [value]="colorValue(token.key)" (input)="updateColor(token.key, $event)" />
+                <span><b>{{ token.label }}</b><code>{{ colorValue(token.key) }}</code></span>
+              </label>
+            }
+          </div>
+        </div>
+
+        <div class="advanced-tokens">
+          <label class="range-token">
+            <span><b>Corner radius</b><code>{{ theme().radius }}px</code></span>
+            <input type="range" min="0" max="32" step="1" [value]="theme().radius" (input)="updateRadius($event)" />
+          </label>
+          <label><span>Shadow</span><input type="text" [value]="theme().shadow" (change)="updateShadow($event)" /></label>
+          <label><span>UI font</span><input type="text" [value]="theme().fontFamily" (change)="updateFont('fontFamily', $event)" /></label>
+          <label><span>Mono font</span><input type="text" [value]="theme().monoFontFamily" (change)="updateFont('monoFontFamily', $event)" /></label>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section capability-section" id="capabilities">
+    <header class="section-heading capability-heading">
+      <div>
+        <p class="eyebrow"><span></span> The complete system</p>
+        <h2>A capability map<br><em>worth exploring.</em></h2>
       </div>
-
-      <footer class="canvas-footer">
-        <span class="status" [class.error]="error()"><i></i>{{ error() ?? (ready() ? "Angular component ready" : "Rendering diagram…") }}</span>
-        <code>{{ active().spec.id }}.visual-flow.json</code>
-        <span>{{ active().metric }}</span>
+      <div class="map-metrics">
+        <span><b>30</b> capabilities</span><span><b>6</b> domains</span><span><b>32</b> relationships</span>
+      </div>
+    </header>
+    <div class="atlas-card">
+      <div class="atlas-toolbar">
+        <span><i></i> Interactive capability atlas</span>
+        <div><code>visual-flow-capability-atlas</code><small>Drag to explore · wheel to zoom</small></div>
+      </div>
+      <visual-flow-diagram [spec]="capabilityAtlas" [options]="capabilityOptions()" (visualFlowError)="reportError($event)" />
+      <footer>
+        <span>Portable contract</span><i>→</i><span>Core engine</span><i>→</i><span>Runtime</span><i>→</i><span>Frameworks</span><i>→</i><span>Authoring</span><i>→</i><span>Delivery</span>
       </footer>
-    </article>
+    </div>
   </section>
 
-  <section class="code-strip">
-    <div><span class="step">01</span><p><b>Import</b><code>VisualFlowAngularComponent</code></p></div>
-    <span class="connector">→</span>
-    <div><span class="step">02</span><p><b>Bind portable JSON</b><code>[spec]="architecture"</code></p></div>
-    <span class="connector">→</span>
-    <div><span class="step">03</span><p><b>Ship everywhere</b><code>Angular · React · Next.js · Web</code></p></div>
+  <section class="section features-section" id="features">
+    <header class="section-heading split-heading">
+      <div>
+        <p class="eyebrow"><span></span> Feature gallery</p>
+        <h2>Purpose-built primitives.<br><em>No visual dead ends.</em></h2>
+      </div>
+      <p>The data model stays compact, while the rendering surface covers precise layouts, expressive routing, semantic roles, visual states, accessibility, and motion.</p>
+    </header>
+
+    <div class="feature-summary-grid">
+      <div><span>LY</span><b>4 layouts</b><small>Automatic, structured, and exact</small></div>
+      <div><span>RT</span><b>4 routes</b><small>Clean geometry for every story</small></div>
+      <div><span>ND</span><b>8 node roles</b><small>A semantic visual language</small></div>
+      <div><span>ED</span><b>6 edge states</b><small>Status without extra legends</small></div>
+      <div><span>FX</span><b>3 motion modes</b><small>Reduced-motion aware</small></div>
+      <div><span>EX</span><b>6 exports</b><small>Source to presentation</small></div>
+    </div>
+
+    <div class="subsection-heading">
+      <div><span>01</span><h3>Deterministic layout engines</h3></div>
+      <p>Pick the right structure, then freeze any automatic result into editable manual coordinates.</p>
+    </div>
+    <div class="layout-grid">
+      @for (layout of layouts; track layout.mode) {
+        <article class="layout-card">
+          <header><span>{{ layout.mode }}</span><b>{{ layout.title }}</b><small>{{ layout.description }}</small></header>
+          <visual-flow-diagram [spec]="layout.spec" [options]="{ panZoom: false, background: true, theme: theme(), motion: 'none' }" />
+          <footer><span>Best for</span><b>{{ layout.bestFor }}</b></footer>
+        </article>
+      }
+    </div>
+
+    <div class="dual-gallery">
+      <article class="feature-canvas route-canvas">
+        <header><span>02 · ROUTING</span><h3>Connector geometry that stays clean.</h3><p>Straight, bezier, orthogonal, and smoothstep routes choose geometry-aware ports and presentation-ready elbows.</p></header>
+        <visual-flow-diagram [spec]="routeGallery" [options]="{ panZoom: true, background: true, theme: theme(), motion: 'flow' }" />
+        <div class="chip-row">@for (item of routes; track item) { <code>{{ item }}</code> }</div>
+      </article>
+      <article class="feature-canvas variant-canvas">
+        <header><span>03 · SEMANTICS</span><h3>Meaning is built into the visual language.</h3><p>Roles, states, icons, badges, labels, and metadata travel with the diagram—not with one renderer.</p></header>
+        <visual-flow-diagram [spec]="variantGallery" [options]="{ panZoom: true, background: true, theme: theme(), motion: 'trace' }" />
+        <div class="variant-legend">
+          <div>@for (item of nodeVariants; track item) { <span class="node-variant" [attr.data-variant]="item"><i></i>{{ item }}</span> }</div>
+          <div>@for (item of edgeVariants; track item) { <span class="edge-variant" [attr.data-variant]="item"><i></i>{{ item }}</span> }</div>
+        </div>
+      </article>
+    </div>
+
+    <div class="feature-detail-grid">
+      <article><span class="feature-number">04</span><div class="feature-icon">A11</div><h3>Accessible by construction</h3><p>Every SVG has a title, description, semantic role, keyboard-focusable nodes, and useful accessible labels. Motion honors reduced-motion preferences.</p><code>role="img" · aria-labelledby</code></article>
+      <article><span class="feature-number">05</span><div class="feature-icon">SEC</div><h3>Data, never executable markup</h3><p>Visible strings are XML-escaped. Labels and metadata are treated as data, keeping the default rendering boundary predictable and safe.</p><code>escapeXml(value)</code></article>
+      <article><span class="feature-number">06</span><div class="feature-icon">DET</div><h3>Deterministic everywhere</h3><p>The same source creates the same positions and SVG on a server, in Angular, inside Next.js, or from the command line.</p><code>spec → layout → SVG</code></article>
+      <article><span class="feature-number">07</span><div class="feature-icon">CI</div><h3>Built for source control</h3><p>Readable JSON, a bundled schema, focused validation issues, CLI gates, Mermaid migration, and agent guidance make diagrams part of delivery.</p><code>visual-flow validate</code></article>
+    </div>
   </section>
+
+  <section class="section api-section" id="api">
+    <header class="section-heading split-heading">
+      <div>
+        <p class="eyebrow"><span></span> Complete public API</p>
+        <h2>Everything exposed.<br><em>Nothing hand-waved.</em></h2>
+      </div>
+      <p>{{ apiEntryCount }} documented APIs across six public surfaces, plus {{ schemaFieldCount }} contract fields with types, defaults, and behavior.</p>
+    </header>
+
+    <div class="api-browser">
+      <aside class="api-package-list">
+        <p>Package surface</p>
+        @for (item of apiPackages; track item.id) {
+          <button type="button" [class.active]="activeApiId() === item.id" (click)="setApi(item.id)">
+            <span>{{ item.label }}</span><small>{{ item.packageName }}</small><i>{{ item.entries.length }}</i>
+          </button>
+        }
+      </aside>
+      <article class="api-content">
+        <header>
+          <div><span>{{ activeApi().label }}</span><h3>{{ activeApi().packageName }}</h3><p>{{ activeApi().summary }}</p></div>
+          <button type="button" (click)="copyInstall()">{{ copied() === 'install-' + activeApi().id ? 'Copied ✓' : 'Copy install' }}</button>
+        </header>
+        <div class="install-line"><span>$</span><code>{{ activeApi().install }}</code></div>
+        <div class="api-entry-list">
+          @for (entry of activeApi().entries; track entry.name) {
+            <section class="api-entry">
+              <div class="api-entry-name"><span>API</span><b>{{ entry.name }}</b></div>
+              <div class="api-entry-detail">
+                <code>{{ entry.signature }}</code>
+                <p>{{ entry.description }}</p>
+                @if (entry.returns) { <dl><dt>Returns</dt><dd>{{ entry.returns }}</dd></dl> }
+                @if (entry.notes) { <dl><dt>Note</dt><dd>{{ entry.notes }}</dd></dl> }
+              </div>
+            </section>
+          }
+        </div>
+      </article>
+    </div>
+
+    <div class="schema-reference">
+      <div class="subsection-heading">
+        <div><span>SCHEMA</span><h3>Portable contract reference</h3></div>
+        <p>The exact fields accepted by the current public TypeScript contract.</p>
+      </div>
+      <div class="schema-tabs" role="tablist" aria-label="Schema types">
+        @for (group of schemaGroups; track group.id) {
+          <button type="button" role="tab" [attr.aria-selected]="activeSchemaId() === group.id" [class.active]="activeSchemaId() === group.id" (click)="setSchema(group.id)">{{ group.label }} <span>{{ group.fields.length }}</span></button>
+        }
+      </div>
+      <div class="schema-table-wrap">
+        <header><span>Type</span><code>{{ activeSchema().typeName }}</code><small>{{ activeSchema().fields.length }} fields</small></header>
+        <table>
+          <thead><tr><th>Field</th><th>Type</th><th>Required</th><th>Default</th><th>Description</th></tr></thead>
+          <tbody>
+            @for (field of activeSchema().fields; track field.field) {
+              <tr>
+                <td><code>{{ field.field }}</code></td>
+                <td>{{ field.type }}</td>
+                <td><span class="required-pill" [class.optional]="!field.required">{{ field.required ? 'yes' : 'no' }}</span></td>
+                <td><code>{{ field.defaultValue }}</code></td>
+                <td>{{ field.description }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="code-reference">
+      <div class="code-tabs">
+        @for (sample of codeSamples; track sample.id) {
+          <button type="button" [class.active]="activeCodeId() === sample.id" (click)="setCode(sample.id)">{{ sample.label }}</button>
+        }
+      </div>
+      <article class="code-window">
+        <header><div><i class="red"></i><i class="yellow"></i><i class="green"></i><span>{{ activeCode().label }} · {{ activeCode().language }}</span></div><button type="button" (click)="copyActiveCode()">{{ copied() === 'code-' + activeCode().id ? 'Copied ✓' : 'Copy code' }}</button></header>
+        <pre><code>{{ activeCode().code }}</code></pre>
+      </article>
+    </div>
+  </section>
+
+  <section class="section framework-section" id="frameworks">
+    <header class="section-heading split-heading">
+      <div>
+        <p class="eyebrow"><span></span> Framework reach</p>
+        <h2>Native where it matters.<br><em>Portable everywhere else.</em></h2>
+      </div>
+      <p>Framework adapters own lifecycle and editing boundaries. The specification, validation, theme system, static renderer, and export formats remain shared.</p>
+    </header>
+
+    <div class="framework-marquee" aria-hidden="true">
+      <span>Angular</span><i>✦</i><span>React</span><i>✦</i><span>Next.js</span><i>✦</i><span>Vue</span><i>✦</i><span>Svelte</span><i>✦</i><span>Solid</span><i>✦</i><span>Lit</span><i>✦</i><span>Astro</span>
+    </div>
+
+    <div class="framework-table-wrap">
+      <table class="framework-table">
+        <thead><tr><th>Environment</th><th>Supported versions</th><th>Integration</th><th>Rendering</th><th>Editing</th></tr></thead>
+        <tbody>
+          @for (framework of frameworks; track framework.name; let index = $index) {
+            <tr><td><span class="framework-index">{{ (index + 1).toString().padStart(2, '0') }}</span><b>{{ framework.name }}</b></td><td>{{ framework.versions }}</td><td>{{ framework.integration }}</td><td>{{ framework.mode }}</td><td>{{ framework.editing }}</td></tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="architecture-strip">
+      <div><span>01</span><b>One JSON contract</b><small>Portable and reviewable</small></div><i>→</i>
+      <div><span>02</span><b>Shared core engine</b><small>Layout, render, validate</small></div><i>→</i>
+      <div><span>03</span><b>Thin framework boundary</b><small>Native lifecycle behavior</small></div><i>→</i>
+      <div><span>04</span><b>Any delivery target</b><small>App, docs, CI, or artifact</small></div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-cta">
+      <p class="eyebrow"><span></span> Ready to draw differently?</p>
+      <h2>Make architecture<br><em>impossible to ignore.</em></h2>
+      <p>Start with the Angular adapter, keep the source portable, and let Visual Flow carry the story across every surface.</p>
+      <div class="footer-install"><span>$</span><code>npm install &#64;sentimental37/visual-flow &#64;sentimental37/visual-flow-angular</code><a href="https://github.com/sentimental37/visual-flow-kit">Open GitHub ↗</a></div>
+    </div>
+    <div class="footer-bottom">
+      <a class="brand" href="#overview"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>Visual Flow <b>Kit</b></span></a>
+      <span>Framework-neutral diagram infrastructure</span>
+      <span>Built with Angular · Powered by portable JSON</span>
+    </div>
+  </footer>
 </main>
