@@ -81,32 +81,52 @@ function wrapLabel(label: string, max = 24): string[] {
   return result.slice(0, 2);
 }
 
-function edgePoints(source: PositionedNode, target: PositionedNode, direction: string): { sx: number; sy: number; tx: number; ty: number } {
-  const horizontal = direction === "LR" || direction === "RL";
+interface EdgePoints {
+  sx: number;
+  sy: number;
+  tx: number;
+  ty: number;
+  axis: "horizontal" | "vertical";
+}
+
+function edgePoints(source: PositionedNode, target: PositionedNode, direction: string): EdgePoints {
+  const sourceCenterX = source.x + source.width / 2;
+  const sourceCenterY = source.y + source.height / 2;
+  const targetCenterX = target.x + target.width / 2;
+  const targetCenterY = target.y + target.height / 2;
+  const deltaX = targetCenterX - sourceCenterX;
+  const deltaY = targetCenterY - sourceCenterY;
+  const prefersHorizontal = direction === "LR" || direction === "RL";
+  const sameColumn = Math.abs(deltaX) < Math.min(source.width, target.width) * 0.45;
+  const sameRow = Math.abs(deltaY) < Math.min(source.height, target.height) * 0.45;
+  const horizontal = prefersHorizontal ? !sameColumn || sameRow : sameRow && !sameColumn;
   if (horizontal) {
-    const forward = target.x >= source.x;
+    const forward = deltaX >= 0;
     return {
       sx: forward ? source.x + source.width : source.x,
-      sy: source.y + source.height / 2,
+      sy: sourceCenterY,
       tx: forward ? target.x : target.x + target.width,
-      ty: target.y + target.height / 2,
+      ty: targetCenterY,
+      axis: "horizontal",
     };
   }
-  const forward = target.y >= source.y;
+  const forward = deltaY >= 0;
   return {
-    sx: source.x + source.width / 2,
+    sx: sourceCenterX,
     sy: forward ? source.y + source.height : source.y,
-    tx: target.x + target.width / 2,
+    tx: targetCenterX,
     ty: forward ? target.y : target.y + target.height,
+    axis: "vertical",
   };
 }
 
 function edgePath(edge: DiagramEdge, source: PositionedNode, target: PositionedNode, direction: string): string {
-  const { sx, sy, tx, ty } = edgePoints(source, target, direction);
+  const { sx, sy, tx, ty, axis } = edgePoints(source, target, direction);
+  const horizontal = axis === "horizontal";
   const route = edge.route ?? "smoothstep";
   if (route === "straight") return `M ${sx} ${sy} L ${tx} ${ty}`;
   if (route === "orthogonal") {
-    if (direction === "LR" || direction === "RL") {
+    if (horizontal) {
       const mx = (sx + tx) / 2;
       return `M ${sx} ${sy} L ${mx} ${sy} L ${mx} ${ty} L ${tx} ${ty}`;
     }
@@ -114,7 +134,7 @@ function edgePath(edge: DiagramEdge, source: PositionedNode, target: PositionedN
     return `M ${sx} ${sy} L ${sx} ${my} L ${tx} ${my} L ${tx} ${ty}`;
   }
   if (route === "bezier") {
-    if (direction === "LR" || direction === "RL") {
+    if (horizontal) {
       const curve = Math.max(64, Math.abs(tx - sx) * 0.45);
       const sign = tx >= sx ? 1 : -1;
       return `M ${sx} ${sy} C ${sx + curve * sign} ${sy}, ${tx - curve * sign} ${ty}, ${tx} ${ty}`;
@@ -123,15 +143,20 @@ function edgePath(edge: DiagramEdge, source: PositionedNode, target: PositionedN
     const sign = ty >= sy ? 1 : -1;
     return `M ${sx} ${sy} C ${sx} ${sy + curve * sign}, ${tx} ${ty - curve * sign}, ${tx} ${ty}`;
   }
-  const radius = 18;
-  if (direction === "LR" || direction === "RL") {
+  if (horizontal) {
+    if (Math.abs(ty - sy) < 0.5) return `M ${sx} ${sy} L ${tx} ${ty}`;
     const mx = (sx + tx) / 2;
-    const sySign = ty >= sy ? 1 : -1;
-    return `M ${sx} ${sy} L ${mx - radius} ${sy} Q ${mx} ${sy} ${mx} ${sy + radius * sySign} L ${mx} ${ty - radius * sySign} Q ${mx} ${ty} ${mx + radius} ${ty} L ${tx} ${ty}`;
+    const xSign = tx >= sx ? 1 : -1;
+    const ySign = ty >= sy ? 1 : -1;
+    const radius = Math.min(18, Math.abs(tx - sx) / 4, Math.abs(ty - sy) / 2);
+    return `M ${sx} ${sy} L ${mx - radius * xSign} ${sy} Q ${mx} ${sy} ${mx} ${sy + radius * ySign} L ${mx} ${ty - radius * ySign} Q ${mx} ${ty} ${mx + radius * xSign} ${ty} L ${tx} ${ty}`;
   }
+  if (Math.abs(tx - sx) < 0.5) return `M ${sx} ${sy} L ${tx} ${ty}`;
   const my = (sy + ty) / 2;
-  const sxSign = tx >= sx ? 1 : -1;
-  return `M ${sx} ${sy} L ${sx} ${my - radius} Q ${sx} ${my} ${sx + radius * sxSign} ${my} L ${tx - radius * sxSign} ${my} Q ${tx} ${my} ${tx} ${my + radius} L ${tx} ${ty}`;
+  const xSign = tx >= sx ? 1 : -1;
+  const ySign = ty >= sy ? 1 : -1;
+  const radius = Math.min(18, Math.abs(ty - sy) / 4, Math.abs(tx - sx) / 2);
+  return `M ${sx} ${sy} L ${sx} ${my - radius * ySign} Q ${sx} ${my} ${sx + radius * xSign} ${my} L ${tx - radius * xSign} ${my} Q ${tx} ${my} ${tx} ${my + radius * ySign} L ${tx} ${ty}`;
 }
 
 function variantMarker(prefix: string, variant: EdgeVariant): string {

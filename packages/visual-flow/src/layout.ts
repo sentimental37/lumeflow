@@ -54,16 +54,50 @@ function grid(spec: VisualFlowSpec, layout: typeof defaults): PositionedDiagram 
   return { ...positioned, ...dimensions(positioned, layout.margin) };
 }
 
+function workflowRanks(spec: VisualFlowSpec): Map<string, number> {
+  const nodeOrder = new Map(spec.nodes.map((node, index) => [node.id, index]));
+  const indegree = new Map(spec.nodes.map((node) => [node.id, 0]));
+  const outgoing = new Map(spec.nodes.map((node) => [node.id, [] as string[]]));
+  for (const edge of spec.edges) {
+    if (!indegree.has(edge.from) || !indegree.has(edge.to)) continue;
+    outgoing.get(edge.from)?.push(edge.to);
+    indegree.set(edge.to, (indegree.get(edge.to) ?? 0) + 1);
+  }
+  const ranks = new Map(spec.nodes.map((node) => [node.id, 0]));
+  const queue = spec.nodes.filter((node) => indegree.get(node.id) === 0).map((node) => node.id);
+  while (queue.length) {
+    queue.sort((left, right) => (nodeOrder.get(left) ?? 0) - (nodeOrder.get(right) ?? 0));
+    const current = queue.shift();
+    if (!current) break;
+    for (const target of outgoing.get(current) ?? []) {
+      ranks.set(target, Math.max(ranks.get(target) ?? 0, (ranks.get(current) ?? 0) + 1));
+      const remaining = (indegree.get(target) ?? 1) - 1;
+      indegree.set(target, remaining);
+      if (remaining === 0) queue.push(target);
+    }
+  }
+  return ranks;
+}
+
 function lanes(spec: VisualFlowSpec, layout: typeof defaults): PositionedDiagram {
   const laneOrder = new Map((spec.lanes ?? []).slice().sort((a, b) => (a.order ?? 0) - (b.order ?? 0)).map((lane, index) => [lane.id, index]));
   const perLane = new Map<string, number>();
+  const occupiedStages = new Map<string, Set<number>>();
+  const connectedNodes = new Set(spec.edges.flatMap((edge) => [edge.from, edge.to]));
+  const ranks = workflowRanks(spec);
   const horizontal = layout.direction === "LR" || layout.direction === "RL";
-  const nodes = spec.nodes.map((node, index) => {
+  const nodes = spec.nodes.map((node) => {
     const lane = node.lane ?? spec.lanes?.[0]?.id ?? "main";
     const laneIndex = laneOrder.get(lane) ?? laneOrder.size;
     const positionInLane = perLane.get(lane) ?? 0;
     perLane.set(lane, positionInLane + 1);
-    const primary = layout.margin + positionInLane * (horizontal ? layout.nodeWidth + layout.gapX : layout.nodeHeight + layout.gapY);
+    const explicitStage = horizontal ? node.column : node.row;
+    let stage = explicitStage ?? (connectedNodes.has(node.id) ? ranks.get(node.id) ?? positionInLane : positionInLane);
+    const occupied = occupiedStages.get(lane) ?? new Set<number>();
+    if (explicitStage === undefined) while (occupied.has(stage)) stage += 1;
+    occupied.add(stage);
+    occupiedStages.set(lane, occupied);
+    const primary = layout.margin + stage * (horizontal ? layout.nodeWidth + layout.gapX : layout.nodeHeight + layout.gapY);
     const secondary = layout.margin + 112 + laneIndex * (horizontal ? layout.nodeHeight + layout.gapY + 48 : layout.nodeWidth + layout.gapX);
     return {
       ...node,
@@ -71,8 +105,8 @@ function lanes(spec: VisualFlowSpec, layout: typeof defaults): PositionedDiagram
       y: node.y ?? (horizontal ? secondary : primary),
       width: node.width ?? layout.nodeWidth,
       height: node.height ?? layout.nodeHeight,
-      row: node.row ?? laneIndex,
-      column: node.column ?? index,
+      row: node.row ?? (horizontal ? laneIndex : stage),
+      column: node.column ?? (horizontal ? stage : laneIndex),
     };
   });
   const positioned = { ...spec, nodes };

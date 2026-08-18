@@ -63,6 +63,70 @@ test("renders accessible SVG with themed paths and motion particles", async () =
   assert.doesNotMatch(result.svg, /<script/i);
 });
 
+test("routes aligned and branched connectors without folded elbows", () => {
+  const base = {
+    schemaVersion: 1,
+    id: "connector-geometry",
+    kind: "architecture",
+    title: "Connector geometry",
+    layout: { mode: "manual", direction: "LR" },
+    nodes: [
+      { id: "source", label: "Source", x: 80, y: 100, width: 196, height: 86 },
+      { id: "aligned", label: "Aligned", x: 400, y: 100, width: 196, height: 86 },
+      { id: "branch", label: "Branch", x: 400, y: 200, width: 196, height: 86 },
+    ],
+    edges: [
+      { from: "source", to: "aligned" },
+      { from: "source", to: "branch" },
+    ],
+  };
+
+  const svg = renderVisualFlow(base, { background: false }).svg;
+  assert.match(svg, /d="M 276 143 L 400 143"/);
+  assert.match(svg, /d="M 276 143 L 320 143 Q 338 143 338 161 L 338 225 Q 338 243 356 243 L 400 243"/);
+  assert.doesNotMatch(svg, /Q 338 143 338 161 L 338 125/);
+});
+
+test("uses vertical ports for same-column nodes and forward ranks in horizontal lanes", () => {
+  const spec = {
+    schemaVersion: 1,
+    id: "lane-routing",
+    kind: "workflow",
+    title: "Lane routing",
+    layout: { mode: "lanes", direction: "LR", gapX: 48 },
+    lanes: [
+      { id: "one", label: "One", order: 0 },
+      { id: "two", label: "Two", order: 1 },
+    ],
+    nodes: [
+      { id: "first", label: "First", lane: "one" },
+      { id: "second", label: "Second", lane: "two" },
+      { id: "third", label: "Third", lane: "two" },
+      { id: "idle", label: "Idle", lane: "two" },
+    ],
+    edges: [
+      { from: "first", to: "second" },
+      { from: "second", to: "third" },
+    ],
+  };
+
+  const positioned = layoutVisualFlow(spec);
+  const byId = new Map(positioned.nodes.map((node) => [node.id, node]));
+  assert.ok(byId.get("first").x < byId.get("second").x);
+  assert.ok(byId.get("second").x < byId.get("third").x);
+  assert.ok(byId.get("third").x < byId.get("idle").x);
+
+  const sameColumn = structuredClone(spec);
+  sameColumn.layout = { mode: "manual", direction: "LR" };
+  sameColumn.nodes = [
+    { id: "first", label: "First", x: 80, y: 100, width: 196, height: 86 },
+    { id: "second", label: "Second", x: 80, y: 260, width: 196, height: 86 },
+    { id: "third", label: "Third", x: 400, y: 260, width: 196, height: 86 },
+  ];
+  const svg = renderVisualFlow(sameColumn, { background: false }).svg;
+  assert.match(svg, /d="M 178 186 L 178 260"/);
+});
+
 test("escapes user-controlled labels in SVG and HTML", async () => {
   const spec = await example();
   spec.title = '<script>alert("x")</script>';
