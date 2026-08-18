@@ -1,0 +1,48 @@
+name: Publish packages
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Exact version already tagged as vX.Y.Z
+        required: true
+        type: string
+      confirmation:
+        description: Type "publish @lumeflow" to release all five packages
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    if: inputs.confirmation == 'publish @lumeflow'
+    runs-on: ubuntu-latest
+    environment: npm
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: v${{ inputs.version }}
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+      - name: Use an npm version with trusted publishing support
+        run: npm install --global npm@11.19.0
+      - run: npm ci
+      - name: Verify release tag and manifests
+        run: node scripts/verify-release-version.mjs "${{ inputs.version }}"
+      - run: npm run release:check
+      - name: Publish core
+        run: npm publish ./packages/visual-flow --access public
+      - name: Publish React adapter
+        run: npm publish ./packages/visual-flow-react --access public
+      - name: Publish Angular adapter
+        run: npm publish ./packages/visual-flow-angular/dist --access public
+      - name: Publish Next.js adapter
+        run: npm publish ./packages/visual-flow-next --access public
+      - name: Publish CLI
+        run: npm publish ./packages/visual-flow-cli --access public

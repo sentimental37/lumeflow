@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ask a question
+    url: https://github.com/sentimental37/lumeflow/discussions
+    about: Get integration help or discuss an approach before filing an issue.
+  - name: Report a vulnerability
+    url: https://github.com/sentimental37/lumeflow/security/advisories/new
+    about: Report security issues privately instead of opening a public issue.

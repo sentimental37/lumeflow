@@ -1,0 +1,65 @@
+name: Bug report
+description: Report a reproducible problem in a package, renderer, export, or the builder.
+title: "[Bug]: "
+labels:
+  - bug
+  - triage
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping make LumeFlow more reliable. Remove private architecture, credentials, and customer data from reproductions.
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Affected surface
+      options:
+        - Core renderer or schema
+        - React adapter
+        - Next.js adapter
+        - Angular adapter
+        - CLI
+        - Studio builder
+        - Showcase or documentation
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: Include LumeFlow, framework, browser, and Node.js versions as applicable.
+      placeholder: "@lumeflow/core 0.1.0, React 19.2, Chrome 140, Node.js 22"
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Link a small repository or paste a sanitized diagram specification and exact steps.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include errors, screenshots, or exported output when useful.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and Discussions.
+          required: true
+        - label: This report contains no credentials, customer data, or private architecture.
+          required: true

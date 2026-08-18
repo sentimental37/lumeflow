@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title description">
+  <title id="title">LumeFlow</title>
+  <desc id="description">Visual architecture diagrams that stay portable and source-controlled.</desc>
+  <defs>
+    <linearGradient id="background" x1="72" y1="32" x2="1200" y2="610" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07131f"/>
+      <stop offset="0.58" stop-color="#050b12"/>
+      <stop offset="1" stop-color="#091424"/>
+    </linearGradient>
+    <linearGradient id="headline" x1="78" y1="205" x2="580" y2="315" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#edf8fb"/>
+      <stop offset="0.62" stop-color="#c7e9ed"/>
+      <stop offset="1" stop-color="#96b4c0"/>
+    </linearGradient>
+    <linearGradient id="line" x1="684" y1="190" x2="1170" y2="485" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#31e6c0"/>
+      <stop offset="0.55" stop-color="#53c8ec"/>
+      <stop offset="1" stop-color="#6d8cff"/>
+    </linearGradient>
+    <radialGradient id="aura" cx="0" cy="0" r="1" gradientTransform="translate(984 320) rotate(90) scale(350 470)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#31e6c0" stop-opacity="0.13"/>
+      <stop offset="0.5" stop-color="#6d8cff" stop-opacity="0.05"/>
+      <stop offset="1" stop-color="#050b12" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#6f98a8" stroke-opacity="0.055"/>
+    </pattern>
+    <filter id="shadow" x="-30%" y="-40%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#000" flood-opacity="0.42"/>
+    </filter>
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M1 1L7 4L1 7" fill="none" stroke="#68d7e5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <rect width="1280" height="640" rx="24" fill="url(#background)"/>
+  <rect width="1280" height="640" rx="24" fill="url(#grid)"/>
+  <rect x="602" width="678" height="640" fill="url(#aura)"/>
+  <path d="M628 36V604" stroke="#91acb7" stroke-opacity="0.1"/>
+
+  <g transform="translate(76 66)">
+    <rect width="50" height="50" rx="14" fill="#081924" stroke="#31e6c0" stroke-opacity="0.56"/>
+    <rect x="12" y="26" width="6" height="12" rx="3" fill="#31e6c0" filter="url(#glow)"/>
+    <rect x="22" y="12" width="6" height="26" rx="3" fill="#6d8cff" filter="url(#glow)"/>
+    <rect x="32" y="19" width="6" height="19" rx="3" fill="#68e59f" filter="url(#glow)"/>
+    <text x="66" y="33" fill="#edf8fb" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" letter-spacing="-0.6">LumeFlow</text>
+  </g>
+
+  <g font-family="Inter,Segoe UI,Arial,sans-serif">
+    <text x="76" y="181" fill="#31e6c0" font-family="Consolas,monospace" font-size="14" font-weight="700" letter-spacing="2.8">DIAGRAM INFRASTRUCTURE FOR THE WEB</text>
+    <text x="72" y="244" fill="url(#headline)" font-size="55" font-weight="700" letter-spacing="-3.2">Architecture diagrams</text>
+    <text x="72" y="304" fill="url(#headline)" font-size="55" font-weight="700" letter-spacing="-3.2">that look designed.</text>
+    <text x="76" y="354" fill="#8ba5b0" font-size="21" font-weight="450">Visual builder. Portable JSON. Any web framework.</text>
+
+    <g transform="translate(76 402)" font-family="Consolas,monospace" font-size="11" font-weight="700" letter-spacing="1">
+      <rect width="143" height="36" rx="9" fill="#31e6c0" fill-opacity="0.07" stroke="#31e6c0" stroke-opacity="0.28"/>
+      <circle cx="18" cy="18" r="3" fill="#31e6c0"/>
+      <text x="30" y="22" fill="#a9c4ca">VISUAL BUILDER</text>
+      <g transform="translate(153)">
+        <rect width="154" height="36" rx="9" fill="#6d8cff" fill-opacity="0.07" stroke="#6d8cff" stroke-opacity="0.28"/>
+        <circle cx="18" cy="18" r="3" fill="#6d8cff"/>
+        <text x="30" y="22" fill="#a9c4ca">DIAGRAM AS CODE</text>
+      </g>
+      <g transform="translate(317)">
+        <rect width="172" height="36" rx="9" fill="#68e59f" fill-opacity="0.06" stroke="#68e59f" stroke-opacity="0.24"/>
+        <circle cx="18" cy="18" r="3" fill="#68e59f"/>
+        <text x="30" y="22" fill="#a9c4ca">FRAMEWORK NEUTRAL</text>
+      </g>
+    </g>
+
+    <text x="76" y="552" fill="#516b77" font-family="Consolas,monospace" font-size="13" letter-spacing="0.8">REACT  ·  NEXT.JS  ·  ANGULAR  ·  WEB COMPONENT</text>
+    <text x="76" y="585" fill="#718d99" font-family="Consolas,monospace" font-size="13">github.com/sentimental37/lumeflow</text>
+  </g>
+
+  <g filter="url(#shadow)" font-family="Inter,Segoe UI,Arial,sans-serif">
+    <rect x="666" y="86" width="554" height="468" rx="22" fill="#07121d" fill-opacity="0.9" stroke="#86a0ac" stroke-opacity="0.16"/>
+    <g transform="translate(690 108)">
+      <circle cx="6" cy="6" r="4" fill="#ff7890" fill-opacity="0.75"/>
+      <circle cx="22" cy="6" r="4" fill="#d6b66d" fill-opacity="0.75"/>
+      <circle cx="38" cy="6" r="4" fill="#68e59f" fill-opacity="0.75"/>
+      <text x="418" y="10" fill="#516b77" font-family="Consolas,monospace" font-size="10" text-anchor="end">PLATFORM.VISUAL-FLOW.JSON</text>
+    </g>
+    <path d="M666 139H1220" stroke="#86a0ac" stroke-opacity="0.12"/>
+
+    <g fill="none" stroke="url(#line)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)">
+      <path d="M811 229H858Q874 229 874 245V277Q874 293 890 293H921"/>
+      <path d="M1035 293H1062Q1078 293 1078 309V351"/>
+      <path d="M980 335V382Q980 398 964 398H929"/>
+      <path d="M1051 398H1081Q1097 398 1097 414V438"/>
+      <path d="M874 398H828Q812 398 812 414V438"/>
+    </g>
+
+    <g>
+      <rect x="704" y="190" width="108" height="76" rx="14" fill="#0c1d2a" stroke="#53a9ff" stroke-opacity="0.43"/>
+      <rect x="718" y="204" width="28" height="28" rx="8" fill="#53a9ff" fill-opacity="0.1" stroke="#53a9ff" stroke-opacity="0.32"/>
+      <text x="732" y="223" fill="#73bdff" font-family="Consolas,monospace" font-size="10" font-weight="700" text-anchor="middle">UI</text>
+      <text x="718" y="248" fill="#d9eaf0" font-size="12" font-weight="700">Web client</text>
+      <text x="718" y="260" fill="#607a86" font-size="8">React · Angular</text>
+    </g>
+
+    <g>
+      <rect x="922" y="252" width="114" height="84" rx="15" fill="#0b211f" stroke="#31e6c0" stroke-opacity="0.58"/>
+      <rect x="938" y="268" width="30" height="30" rx="9" fill="#31e6c0" fill-opacity="0.1" stroke="#31e6c0" stroke-opacity="0.35"/>
+      <text x="953" y="288" fill="#31e6c0" font-family="Consolas,monospace" font-size="9" font-weight="700" text-anchor="middle">API</text>
+      <text x="938" y="315" fill="#e4f5f2" font-size="13" font-weight="700">Core engine</text>
+      <rect x="922" y="252" width="3" height="84" rx="2" fill="#31e6c0" filter="url(#glow)"/>
+    </g>
+
+    <g>
+      <rect x="1030" y="352" width="128" height="76" rx="14" fill="#151a2b" stroke="#6d8cff" stroke-opacity="0.47"/>
+      <rect x="1044" y="366" width="28" height="28" rx="8" fill="#6d8cff" fill-opacity="0.12" stroke="#6d8cff" stroke-opacity="0.35"/>
+      <text x="1058" y="385" fill="#91a5ff" font-family="Consolas,monospace" font-size="9" font-weight="700" text-anchor="middle">SVG</text>
+      <text x="1044" y="410" fill="#dfe4fa" font-size="12" font-weight="700">Export targets</text>
+      <text x="1044" y="421" fill="#68718f" font-size="8">SVG · PNG · HTML</text>
+    </g>
+
+    <g>
+      <rect x="790" y="352" width="140" height="76" rx="14" fill="#0f2021" stroke="#68e59f" stroke-opacity="0.38"/>
+      <rect x="804" y="366" width="28" height="28" rx="8" fill="#68e59f" fill-opacity="0.1" stroke="#68e59f" stroke-opacity="0.3"/>
+      <text x="818" y="385" fill="#81efa9" font-family="Consolas,monospace" font-size="9" font-weight="700" text-anchor="middle">JSON</text>
+      <text x="804" y="410" fill="#dceee4" font-size="12" font-weight="700">Portable source</text>
+      <text x="804" y="421" fill="#617d6c" font-size="8">Review · diff · automate</text>
+    </g>
+
+    <g>
+      <rect x="740" y="438" width="138" height="72" rx="14" fill="#101a25" stroke="#53c8ec" stroke-opacity="0.28"/>
+      <text x="756" y="466" fill="#d7e8ed" font-size="12" font-weight="700">Visual builder</text>
+      <text x="756" y="484" fill="#66808b" font-size="9">Drag · connect · theme</text>
+      <circle cx="853" cy="474" r="5" fill="#31e6c0" filter="url(#glow)"/>
+    </g>
+
+    <g>
+      <rect x="1042" y="438" width="116" height="72" rx="14" fill="#101825" stroke="#6d8cff" stroke-opacity="0.28"/>
+      <text x="1058" y="466" fill="#dce2f5" font-size="12" font-weight="700">Agent skill</text>
+      <text x="1058" y="484" fill="#68728e" font-size="9">Create · validate</text>
+      <circle cx="1133" cy="474" r="5" fill="#6d8cff" filter="url(#glow)"/>
+    </g>
+  </g>
+
+  <rect x="0.75" y="0.75" width="1278.5" height="638.5" rx="23.25" fill="none" stroke="#a7c2cd" stroke-opacity="0.12" stroke-width="1.5"/>
+</svg>

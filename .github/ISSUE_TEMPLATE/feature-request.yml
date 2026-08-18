@@ -1,0 +1,57 @@
+name: Feature request
+description: Propose a focused improvement to LumeFlow.
+title: "[Feature]: "
+labels:
+  - enhancement
+  - triage
+body:
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Product area
+      options:
+        - Diagram model and schema
+        - Layout and routing
+        - Themes and rendering
+        - React
+        - Next.js
+        - Angular
+        - Web Component or another framework
+        - CLI and migration
+        - Studio builder
+        - Agent skill
+        - Documentation and examples
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: Describe the workflow or limitation before proposing an interface.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: Explain what a successful result looks like.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: textarea
+    id: example
+    attributes:
+      label: Example or proposed API
+      description: Add a sanitized JSON or code example when useful.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched the roadmap, issues, and Discussions.
+          required: true
+        - label: The proposal preserves portable, framework-neutral diagram source.
+          required: true

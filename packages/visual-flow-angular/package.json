@@ -2,6 +2,25 @@
   "name": "@lumeflow/angular",
   "version": "0.1.0",
   "description": "Standalone Angular component for rendering portable @lumeflow/core diagrams with browser-safe lifecycle management and SSR guards.",
+  "license": "MIT",
+  "author": "LumeFlow contributors",
+  "homepage": "https://sentimental37.github.io/lumeflow-showcase/",
+  "bugs": {
+    "url": "https://github.com/sentimental37/lumeflow/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sentimental37/lumeflow.git",
+    "directory": "packages/visual-flow-angular"
+  },
+  "keywords": [
+    "angular",
+    "architecture-diagrams",
+    "diagram-as-code",
+    "standalone-component",
+    "svg",
+    "typescript"
+  ],
   "type": "module",
   "sideEffects": false,
   "module": "./dist/fesm2022/visual-flow-angular.mjs",

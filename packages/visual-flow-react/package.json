@@ -2,6 +2,25 @@
   "name": "@lumeflow/react",
   "version": "0.1.0",
   "description": "React canvas, editing primitives, and React Flow adapter for @lumeflow/core diagrams.",
+  "license": "MIT",
+  "author": "LumeFlow contributors",
+  "homepage": "https://sentimental37.github.io/lumeflow-showcase/",
+  "bugs": {
+    "url": "https://github.com/sentimental37/lumeflow/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sentimental37/lumeflow.git",
+    "directory": "packages/visual-flow-react"
+  },
+  "keywords": [
+    "react",
+    "architecture-diagrams",
+    "diagram-as-code",
+    "visual-editor",
+    "react-flow",
+    "typescript"
+  ],
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
