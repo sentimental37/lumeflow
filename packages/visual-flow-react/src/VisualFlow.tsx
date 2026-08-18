@@ -67,7 +67,10 @@ function Canvas({ spec, editable = false, fitView = true, showControls = true, s
   const { screenToFlowPosition } = useReactFlow();
   const theme = resolveTheme(themeInput ?? spec.theme);
 
-  useEffect(() => setNodes(toReactFlowNodes(spec, editable)), [editable, setNodes, spec]);
+  useEffect(() => setNodes((current) => {
+    const selectedIds = new Set(current.filter((node) => node.selected).map((node) => node.id));
+    return toReactFlowNodes(spec, editable).map((node) => ({ ...node, selected: selectedIds.has(node.id) }));
+  }), [editable, setNodes, spec]);
   useEffect(() => setEdges(toReactFlowEdges(spec)), [setEdges, spec]);
 
   const variables = useMemo(() => ({

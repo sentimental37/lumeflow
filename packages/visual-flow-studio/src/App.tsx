@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { downloadVisualFlow, freezeVisualFlowLayout, resolveTheme, serializeVisualFlow, validateVisualFlow, visualFlowThemes, type DiagramKind, type DiagramNode, type VisualFlowSpec, type VisualFlowTheme } from "@lumeflow/core";
+import { downloadVisualFlow, freezeVisualFlowLayout, resolveTheme, serializeVisualFlow, validateVisualFlow, visualFlowThemes, type DiagramEdge, type DiagramKind, type DiagramNode, type VisualFlowSpec, type VisualFlowTheme } from "@lumeflow/core";
 import { VisualFlow } from "@lumeflow/react";
 import { cloneTemplate, palette, templates } from "./templates.js";
 
@@ -60,8 +60,13 @@ export function App() {
   const [tab, setTab] = useState<InspectorTab>("properties");
   const [jsonDraft, setJsonDraft] = useState(() => serializeVisualFlow(spec));
   const [jsonDirty, setJsonDirty] = useState(false);
+  const [connectionTargetId, setConnectionTargetId] = useState("");
   const [notice, setNotice] = useState("Ready");
   const selected = useMemo(() => spec.nodes.find((node) => node.id === selectedId), [selectedId, spec.nodes]);
+  const connectionCandidates = useMemo(() => spec.nodes.filter((node) => node.id !== selectedId), [selectedId, spec.nodes]);
+  const selectedConnections = useMemo(() => spec.edges
+    .map((edge, index) => ({ edge, index }))
+    .filter(({ edge }) => edge.from === selectedId || edge.to === selectedId), [selectedId, spec.edges]);
   const theme = resolveTheme(spec.theme);
   const validation = useMemo(() => validateVisualFlow(spec), [spec]);
 
@@ -69,6 +74,12 @@ export function App() {
     localStorage.setItem(storageKey, serializeVisualFlow(spec));
     if (!jsonDirty) setJsonDraft(serializeVisualFlow(spec));
   }, [jsonDirty, spec]);
+
+  useEffect(() => {
+    setConnectionTargetId((current) => connectionCandidates.some((node) => node.id === current)
+      ? current
+      : connectionCandidates[0]?.id ?? "");
+  }, [connectionCandidates]);
 
   const updateNode = (patch: Partial<DiagramNode>) => {
     if (!selectedId) return;
@@ -80,6 +91,34 @@ export function App() {
     setSpec((current) => ({ ...current, nodes: current.nodes.filter((node) => node.id !== selectedId), edges: current.edges.filter((edge) => edge.from !== selectedId && edge.to !== selectedId), groups: current.groups?.map((group) => ({ ...group, nodeIds: group.nodeIds.filter((id) => id !== selectedId) })).filter((group) => group.nodeIds.length) }));
     setSelectedId(undefined);
     setNotice("Node removed");
+  };
+
+  const addConnection = () => {
+    if (!selectedId || !connectionTargetId) {
+      setNotice("Select a source component and a target");
+      return;
+    }
+    const target = spec.nodes.find((node) => node.id === connectionTargetId);
+    if (!target) return;
+    if (spec.edges.some((edge) => edge.from === selectedId && edge.to === connectionTargetId)) {
+      setNotice(`Already connected to ${target.label}`);
+      return;
+    }
+    const edge: DiagramEdge = {
+      id: `edge-${crypto.randomUUID()}`,
+      from: selectedId,
+      to: connectionTargetId,
+      variant: "accent",
+      route: "smoothstep",
+      animated: true,
+    };
+    setSpec((current) => ({ ...current, edges: [...current.edges, edge] }));
+    setNotice(`Connected ${selected?.label ?? selectedId} to ${target.label}`);
+  };
+
+  const removeConnection = (index: number) => {
+    setSpec((current) => ({ ...current, edges: current.edges.filter((_edge, edgeIndex) => edgeIndex !== index) }));
+    setNotice("Connection removed");
   };
 
   const addNode = (node: Pick<DiagramNode, "variant" | "label" | "description" | "icon">, position?: { x: number; y: number }) => {
@@ -169,7 +208,7 @@ export function App() {
           <div>{(Object.keys(templates) as Array<keyof typeof templates>).map((name) => <button className={spec.id === templates[name].id ? "is-active" : ""} key={name} type="button" onClick={() => useTemplate(name)}>{formatLabel(name)}</button>)}</div>
         </div>
         <div className="palette-list">{palette.map((node) => <PaletteItem key={node.variant} node={node} onAdd={() => addNode(node)} />)}</div>
-        <div className="palette-tip"><span>Tip</span><p>Drag between glowing handles to connect components. Select a node to edit it.</p></div>
+        <div className="palette-tip"><span>Tip</span><p>Select a source component and use <b>Connect to</b> in Properties—or drag its right handle to the target's left handle.</p></div>
       </aside>
 
       <section className="canvas-panel">
@@ -193,6 +232,22 @@ export function App() {
             <Field label="Description"><textarea rows={3} value={selected.description ?? ""} onChange={(event) => updateNode({ description: event.target.value })} /></Field>
             <div className="field-row"><Field label="Icon"><input maxLength={2} value={selected.icon ?? ""} onChange={(event) => updateNode({ icon: event.target.value.toUpperCase() })} /></Field><Field label="Type"><select value={selected.variant ?? "default"} onChange={(event) => updateNode({ variant: event.target.value as DiagramNode["variant"] })}>{["default", "client", "service", "data", "security", "event", "decision", "external"].map((value) => <option key={value} value={value}>{formatLabel(value)}</option>)}</select></Field></div>
             <Field label="Badges"><input value={selected.badges?.join(", ") ?? ""} placeholder="OIDC, FDC3" onChange={(event) => updateNode({ badges: event.target.value.split(",").map((item) => item.trim()).filter(Boolean) })} /></Field>
+            <section className="connection-editor" aria-label="Component connections">
+              <div className="connection-editor__heading"><span><strong>Connections</strong><small>{selectedConnections.length} attached</small></span><em>{selectedConnections.length}</em></div>
+              <p>Create an outgoing connection from <b>{selected.label}</b>.</p>
+              <div className="connection-composer">
+                <select aria-label={`Connect ${selected.label} to`} value={connectionTargetId} onChange={(event) => setConnectionTargetId(event.target.value)} disabled={!connectionCandidates.length}>
+                  {connectionCandidates.length ? connectionCandidates.map((node) => <option key={node.id} value={node.id}>{node.label}</option>) : <option value="">Add another component first</option>}
+                </select>
+                <button className="primary-button" type="button" onClick={addConnection} disabled={!connectionTargetId}>Connect</button>
+              </div>
+              {selectedConnections.length ? <div className="connection-list">{selectedConnections.map(({ edge, index }) => {
+                const outgoing = edge.from === selected.id;
+                const peerId = outgoing ? edge.to : edge.from;
+                const peer = spec.nodes.find((node) => node.id === peerId);
+                return <div key={edge.id ?? `${edge.from}-${edge.to}-${index}`}><span aria-hidden="true">{outgoing ? "→" : "←"}</span><p><strong>{peer?.label ?? peerId}</strong><small>{outgoing ? "Outgoing" : "Incoming"}{edge.label ? ` · ${edge.label}` : ""}</small></p><button type="button" aria-label={`Remove connection with ${peer?.label ?? peerId}`} onClick={() => removeConnection(index)}>×</button></div>;
+              })}</div> : <p className="connection-empty">No connections yet. Choose a target above or use the canvas handles.</p>}
+            </section>
             <button className="danger-button" type="button" onClick={deleteSelected}>Delete component</button>
           </> : <>
             <Field label="Description"><textarea rows={4} value={spec.description ?? ""} onChange={(event) => setSpec((current) => ({ ...current, description: event.target.value }))} /></Field>

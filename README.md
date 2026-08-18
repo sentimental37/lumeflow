@@ -152,11 +152,15 @@ See [docs/FRAMEWORKS.md](docs/FRAMEWORKS.md) for lifecycle, SSR, editing, and ve
 
 1. Open `/builder/` and choose an architecture, workflow, or lifecycle template.
 2. Drag a component onto the canvas—or click a palette item to add it precisely.
-3. Connect nodes with handles and reposition them directly.
+3. Select a source component and choose a target in the **Connect to** control, or drag the source's glowing right handle to the target's left handle.
 4. Select a node to edit its label, description, semantic type, icon, and badges.
 5. Tune built-in themes or individual color and radius tokens.
 6. Review or edit the underlying JSON, then validate and apply it.
 7. Export JSON, SVG, HTML, PNG, or WebP.
+
+The Properties inspector lists every incoming and outgoing connection for the selected component and lets you remove individual links without editing JSON.
+
+![LumeFlow component connection editor](docs/screenshots/builder-connections.png)
 
 Drafts are stored locally in the browser and restored automatically. The builder does not require an account or backend.
 

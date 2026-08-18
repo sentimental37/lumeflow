@@ -16,8 +16,8 @@ export function VisualFlowNodeView({ data, selected }: NodeProps<VisualFlowCanva
   const { node, editable } = data;
   const variant = node.variant ?? "default";
   return (
-    <article className={`vfr-node vfr-node--${variant}${selected ? " is-selected" : ""}`} aria-label={node.description ? `${node.label}: ${node.description}` : node.label}>
-      <Handle className="vfr-handle" type="target" position={Position.Left} isConnectable={editable} />
+    <article className={`vfr-node vfr-node--${variant}${editable ? " is-editable" : ""}${selected ? " is-selected" : ""}`} aria-label={node.description ? `${node.label}: ${node.description}` : node.label}>
+      <Handle aria-label={`Connect into ${node.label}`} className="vfr-handle" title="Incoming connection" type="target" position={Position.Left} isConnectable={editable} />
       <span className="vfr-node__rail" />
       <span className="vfr-node__icon" aria-hidden="true">{initials(node)}</span>
       <span className="vfr-node__copy">
@@ -25,7 +25,7 @@ export function VisualFlowNodeView({ data, selected }: NodeProps<VisualFlowCanva
         {node.description ? <small>{node.description}</small> : null}
       </span>
       {node.badges?.length ? <span className="vfr-node__badges">{node.badges.slice(0, 2).map((badge) => <em key={badge}>{badge}</em>)}</span> : null}
-      <Handle className="vfr-handle" type="source" position={Position.Right} isConnectable={editable} />
+      <Handle aria-label={`Connect from ${node.label}`} className="vfr-handle" title="Outgoing connection" type="source" position={Position.Right} isConnectable={editable} />
     </article>
   );
 }

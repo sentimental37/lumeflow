@@ -15,4 +15,7 @@ test("Studio is a connected, persistent builder rather than an isolated demo", a
   assert.match(source, /onClick=\{onAdd\}/);
   assert.match(source, /href="\.\.\/"/);
   assert.match(source, /href="\.\.\/#builder"/);
+  assert.match(source, /Component connections/);
+  assert.match(source, /Connect \$\{selected\.label\} to/);
+  assert.match(source, /Already connected to/);
 });
