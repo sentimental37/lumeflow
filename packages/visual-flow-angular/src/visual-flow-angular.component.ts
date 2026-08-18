@@ -32,8 +32,8 @@ import {
     "[attr.aria-label]": "ariaLabel",
   },
   styles: [
-    ":host{display:block;min-width:0;min-height:320px;overflow:hidden}",
-    ":host>svg{display:block;width:100%;height:100%;min-height:inherit}",
+    ".visual-flow-diagram{display:block;min-width:0;min-height:320px;overflow:hidden}",
+    ".visual-flow-diagram>svg{display:block;width:100%;height:100%;min-height:inherit}",
   ],
 })
 export class VisualFlowAngularComponent implements AfterViewInit, OnChanges, OnDestroy {

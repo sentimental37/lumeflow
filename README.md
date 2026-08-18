@@ -6,6 +6,8 @@ Sleek architecture and flow diagrams with portable JSON source, deterministic la
 
 ![Visual Flow Studio builder](docs/screenshots/builder-studio.png)
 
+![Visual Flow Kit Angular demo](docs/screenshots/angular-demo.png)
+
 ## What is included
 
 | Package or app | Purpose |
@@ -17,6 +19,7 @@ Sleek architecture and flow diagrams with portable JSON source, deterministic la
 | `@sentimental37/visual-flow-cli` | Validate, inspect, render, export, and migrate Mermaid into Visual Flow JSON. |
 | Visual Flow Studio | Complete drag/drop builder with inspectors, themes, JSON editing, automatic layout, local recovery, and export. |
 | Demo Gallery | Polished examples that exercise architecture, workflow, data-flow, dark/light themes, and motion. |
+| Angular Demo | Native standalone-component showcase with live diagram switching, pan/zoom, and SVG export. |
 | Agent skill | Instructions, schema reference, starter source, and rendering helper for agents creating Visual Flow instead of Mermaid. |
 
 Vue, Svelte, Solid, Lit, Astro, and plain JavaScript use the standards-based `<visual-flow>` custom element from the core package.
@@ -38,6 +41,14 @@ npm run dev:studio
 ```
 
 Open `http://127.0.0.1:4317`.
+
+Start the Angular showcase with:
+
+```powershell
+npm run dev:angular
+```
+
+Open `http://127.0.0.1:4200`.
 
 ## Smallest useful example
 

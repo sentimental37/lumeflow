@@ -24,3 +24,9 @@ test("ships partial-Ivy metadata and compiles in a strict Angular consumer", () 
   assert.equal(existsSync(resolve(packageRoot, "test/.out/angular-consumer.js")), true);
 
 });
+
+test("gives the rendered host a block layout without relying on Shadow DOM", () => {
+  const source = readFileSync(resolve(packageRoot, "src/visual-flow-angular.component.ts"), "utf8");
+  assert.match(source, /\.visual-flow-diagram\{display:block/);
+  assert.doesNotMatch(source, /:host\{display:block/);
+});

@@ -1,0 +1,30 @@
+{
+  "name": "@sentimental37/visual-flow-angular-demo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Interactive Angular showcase for Visual Flow Kit.",
+  "type": "module",
+  "scripts": {
+    "dev": "ng serve --host 127.0.0.1",
+    "build": "ng build",
+    "typecheck": "ngc -p tsconfig.app.json --noEmit",
+    "test": "node --test test/*.test.mjs",
+    "clean": "rimraf dist .angular .turbo"
+  },
+  "dependencies": {
+    "@angular/common": "21.2.20",
+    "@angular/core": "21.2.20",
+    "@angular/platform-browser": "21.2.20",
+    "@sentimental37/visual-flow": "^0.1.0",
+    "@sentimental37/visual-flow-angular": "^0.1.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^21.2.0",
+    "@angular/cli": "^21.2.0",
+    "@angular/compiler": "21.2.20",
+    "@angular/compiler-cli": "21.2.20",
+    "rimraf": "^6.0.1",
+    "typescript": "5.9.3"
+  }
+}

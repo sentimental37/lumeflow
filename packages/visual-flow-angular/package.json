@@ -4,6 +4,8 @@
   "description": "Standalone Angular component for rendering portable @sentimental37/visual-flow diagrams with browser-safe lifecycle management and SSR guards.",
   "type": "module",
   "sideEffects": false,
+  "module": "./dist/fesm2022/visual-flow-angular.mjs",
+  "types": "./dist/types/visual-flow-angular.d.ts",
   "scripts": {
     "build": "ng-packagr -p ng-package.json",
     "typecheck": "ngc -p tsconfig.lib.json --noEmit",

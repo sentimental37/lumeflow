@@ -23,6 +23,7 @@
     "dev": "npm run dev:studio",
     "dev:studio": "npm run dev --workspace @sentimental37/visual-flow-studio",
     "dev:gallery": "npm run dev --workspace @sentimental37/visual-flow-gallery",
+    "dev:angular": "npm run dev --workspace @sentimental37/visual-flow-angular-demo",
     "pack": "node scripts/pack.mjs",
     "verify:distribution": "node scripts/verify-distribution.mjs"
   },

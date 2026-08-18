@@ -1,0 +1,75 @@
+<main>
+  <header class="topbar">
+    <a class="brand" href="https://github.com/sentimental37/visual-flow-kit" aria-label="Visual Flow Kit on GitHub">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>Visual Flow <b>Kit</b></span>
+    </a>
+    <div class="framework-pill"><span class="angular-mark">A</span> Native Angular adapter</div>
+    <a class="repo-link" href="https://github.com/sentimental37/visual-flow-kit">View repository <span>↗</span></a>
+  </header>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Angular integration showcase</p>
+      <h1>Architecture that feels <em>alive.</em></h1>
+      <p class="lede">Portable diagram JSON, rendered through a native standalone Angular component—with strict templates, zoneless change detection, pan, zoom, motion, and export.</p>
+    </div>
+    <div class="facts" aria-label="Integration facts">
+      <div><strong>17–22</strong><span>Angular support</span></div>
+      <div><strong>0</strong><span>framework lock-in</span></div>
+      <div><strong>SVG</strong><span>crisp at any size</span></div>
+    </div>
+  </section>
+
+  <section class="showcase" aria-labelledby="diagram-title">
+    <aside class="catalog">
+      <p class="section-label">Choose a story</p>
+      @for (demo of demos; track demo.key; let index = $index) {
+        <button type="button" [class.active]="activeKey() === demo.key" (click)="select(demo.key)">
+          <span class="item-index">0{{ index + 1 }}</span>
+          <span class="item-copy"><b>{{ demo.label }}</b><small>{{ demo.kicker }}</small></span>
+          <span class="arrow">→</span>
+        </button>
+      }
+      <div class="integration-note">
+        <span class="pulse"></span>
+        <div><b>Angular lifecycle owned</b><small>Safe updates, cleanup, and SSR guards are built into the adapter.</small></div>
+      </div>
+    </aside>
+
+    <article class="canvas-card">
+      <header class="canvas-header">
+        <div>
+          <p>{{ active().kicker }}</p>
+          <h2 id="diagram-title">{{ active().spec.title }}</h2>
+          <span>{{ active().summary }}</span>
+        </div>
+        <button type="button" class="export-button" (click)="exportSvg()" [disabled]="!ready()">Export SVG</button>
+      </header>
+
+      <div class="diagram-shell">
+        <div class="grid-glow"></div>
+        <visual-flow-diagram
+          [spec]="active().spec"
+          [options]="diagramOptions"
+          (visualFlowReady)="markReady()"
+          (visualFlowError)="reportError($event)"
+        />
+      </div>
+
+      <footer class="canvas-footer">
+        <span class="status" [class.error]="error()"><i></i>{{ error() ?? (ready() ? "Angular component ready" : "Rendering diagram…") }}</span>
+        <code>{{ active().spec.id }}.visual-flow.json</code>
+        <span>{{ active().metric }}</span>
+      </footer>
+    </article>
+  </section>
+
+  <section class="code-strip">
+    <div><span class="step">01</span><p><b>Import</b><code>VisualFlowAngularComponent</code></p></div>
+    <span class="connector">→</span>
+    <div><span class="step">02</span><p><b>Bind portable JSON</b><code>[spec]="architecture"</code></p></div>
+    <span class="connector">→</span>
+    <div><span class="step">03</span><p><b>Ship everywhere</b><code>Angular · React · Next.js · Web</code></p></div>
+  </section>
+</main>
