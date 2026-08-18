@@ -6,7 +6,7 @@ const layouts = new Set(["manual", "grid", "lanes", "dagre"]);
 export const VISUAL_FLOW_SCHEMA = {
   $schema: "https://json-schema.org/draft/2020-12/schema",
   $id: "https://visual-flow.dev/schemas/visual-flow.schema.json",
-  title: "Visual Flow diagram",
+  title: "LumeFlow diagram",
   type: "object",
   additionalProperties: false,
   required: ["schemaVersion", "id", "kind", "title", "nodes", "edges"],
@@ -117,6 +117,6 @@ export function validateVisualFlow(value: unknown): ValidationResult {
 export function assertVisualFlow(value: unknown): asserts value is VisualFlowSpec {
   const result = validateVisualFlow(value);
   if (!result.valid) {
-    throw new Error(`Invalid Visual Flow diagram:\n${result.issues.filter((entry) => entry.severity === "error").map((entry) => `- ${entry.path}: ${entry.message}`).join("\n")}`);
+    throw new Error(`Invalid LumeFlow diagram:\n${result.issues.filter((entry) => entry.severity === "error").map((entry) => `- ${entry.path}: ${entry.message}`).join("\n")}`);
   }
 }

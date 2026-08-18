@@ -1,8 +1,8 @@
 {
-  "name": "@sentimental37/visual-flow-angular-demo",
+  "name": "@lumeflow/angular-showcase",
   "version": "0.1.0",
   "private": true,
-  "description": "Interactive Angular showcase for Visual Flow Kit.",
+  "description": "Interactive Angular showcase for LumeFlow.",
   "type": "module",
   "scripts": {
     "dev": "ng serve --host 127.0.0.1",
@@ -15,8 +15,8 @@
     "@angular/common": "21.2.20",
     "@angular/core": "21.2.20",
     "@angular/platform-browser": "21.2.20",
-    "@sentimental37/visual-flow": "^0.1.0",
-    "@sentimental37/visual-flow-angular": "^0.1.0",
+    "@lumeflow/core": "^0.1.0",
+    "@lumeflow/angular": "^0.1.0",
     "tslib": "^2.3.0"
   },
   "devDependencies": {

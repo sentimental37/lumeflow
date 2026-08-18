@@ -1,65 +1,68 @@
-# Visual Flow Kit
+# LumeFlow
 
-Sleek architecture and flow diagrams with portable JSON source, deterministic layout, interactive web canvases, a drag-and-drop builder, framework adapters, exports, and an agent skill that can replace Mermaid in documentation workflows.
+**Architecture diagrams that look designed—without giving up code, portability, or framework choice.**
 
-![Visual Flow Kit demo gallery](docs/screenshots/demo-gallery.png)
+[Live showcase](https://lumeflow.vercel.app/) · [Open the visual builder](https://lumeflow.vercel.app/builder/) · [Framework guide](docs/FRAMEWORKS.md) · [MIT License](LICENSE)
 
-![Visual Flow Studio builder](docs/screenshots/builder-studio.png)
+![LumeFlow Studio visual builder](docs/screenshots/builder-studio.png)
 
-![Visual Flow Kit Angular demo](docs/screenshots/angular-demo.png)
+LumeFlow is a complete diagram system for architecture, workflow, data-flow, sequence, and lifecycle visuals. A readable JSON document is the source of truth. The same source can be edited in the browser, rendered in Angular, React, Next.js, or a Web Component, validated in CI, exported for documents, and created by an agent instead of Mermaid.
 
-![Visual Flow Kit Angular demo in light mode](docs/screenshots/angular-demo-light.png)
+> LumeFlow is currently a source release. The `@lumeflow/*` package names describe the intended public package surface; npm publication is a separate release step and has not been claimed in this README.
 
-![Visual Flow Kit capability atlas](docs/screenshots/angular-capability-atlas.png)
+## Why LumeFlow
 
-## What is included
+- **Sleek by default.** Curved and orthogonal routing, deliberate spacing, semantic node treatments, motion, and polished dark and light themes.
+- **Visual and code-first.** Build with drag and drop, then keep the portable JSON in source control.
+- **Framework-neutral.** One core model with native React, Next.js, and Angular adapters plus a standards-based custom element.
+- **Deterministic.** The same source produces the same layout and SVG in browsers, servers, command-line jobs, and CI.
+- **Exportable.** JSON, SVG, standalone HTML, PNG, JPEG, and WebP are generated from the same document.
+- **Agent-ready.** A bundled skill teaches agents to create LumeFlow source, validate it, render it, and visually inspect the result.
 
-| Package or app | Purpose |
+## Product surfaces
+
+| Surface | What it provides |
 | --- | --- |
-| `@sentimental37/visual-flow` | Framework-neutral model, validation, Dagre/grid/lane/manual layouts, SVG/HTML/raster export, themes, motion, and a Web Component. |
-| `@sentimental37/visual-flow-react` | React 18/19 interactive canvas, editing, selection, pan/zoom, controls, and minimap. |
-| `@sentimental37/visual-flow-next` | Next.js server-rendered static diagrams and an explicit client canvas entry. |
-| `@sentimental37/visual-flow-angular` | Angular 17–22 standalone component in Angular Package Format with SSR guards. |
-| `@sentimental37/visual-flow-cli` | Validate, inspect, render, export, and migrate Mermaid into Visual Flow JSON. |
-| Visual Flow Studio | Complete drag/drop builder with inspectors, themes, JSON editing, automatic layout, local recovery, and export. |
-| Demo Gallery | Polished examples that exercise architecture, workflow, data-flow, dark/light themes, and motion. |
-| Angular Demo | Full reference site with live theme-token customization, routing/direction/motion controls, six exports, feature galleries, a 30-node capability atlas, framework matrix, code recipes, and complete API/schema documentation. |
-| Agent skill | Instructions, schema reference, starter source, and rendering helper for agents creating Visual Flow instead of Mermaid. |
+| [Showcase](https://lumeflow.vercel.app/) | Interactive themes, layouts, routing, motion, exports, complete API documentation, framework recipes, and the 30-node capability atlas. |
+| [Studio](https://lumeflow.vercel.app/builder/) | Full-screen drag-and-drop builder with templates, connection editing, inspectors, theme workbench, JSON editing, validation, local recovery, and export. |
+| `@lumeflow/core` | Portable model, validation, Dagre/grid/lane/manual layouts, SVG/HTML/raster export, themes, motion, DOM mounting, and a Web Component. |
+| `@lumeflow/react` | React 18/19 editable canvas, selection, connection editing, pan/zoom, controls, and minimap. |
+| `@lumeflow/next` | Next.js App Router and Pages Router static/server rendering plus an explicit client canvas entry. |
+| `@lumeflow/angular` | Angular 17–22 standalone component in Angular Package Format with SSR guards. |
+| `@lumeflow/cli` | Validate, inspect, render, export, emit the schema, and migrate Mermaid topology. |
+| Agent skill | Instructions, schema reference, starter source, and a rendering helper for agent-authored diagrams. |
 
-Vue, Svelte, Solid, Lit, Astro, and plain JavaScript use the standards-based `<visual-flow>` custom element from the core package.
+![LumeFlow dark showcase](docs/screenshots/angular-demo.png)
 
-## Run locally
+![LumeFlow light showcase](docs/screenshots/angular-demo-light.png)
+
+## Run the complete site
 
 Requirements: Node.js 20.19 or newer and npm 10 or newer.
 
 ```powershell
 npm install
 npm run verify
-npm run dev:gallery
+npm run build:site
+npm run preview:site
 ```
 
-Open `http://127.0.0.1:4327`. Start the builder separately with:
+Open `http://127.0.0.1:4200/`. The documentation and showcase are at `/`; the full builder is at `/builder/`.
+
+For focused development:
 
 ```powershell
-npm run dev:studio
+npm run dev:angular  # Angular showcase with HMR on port 4200
+npm run dev:studio   # Studio with HMR on port 4317
+npm run dev:gallery  # Standalone gallery on port 4327
 ```
-
-Open `http://127.0.0.1:4317`.
-
-Start the Angular showcase with:
-
-```powershell
-npm run dev:angular
-```
-
-Open `http://127.0.0.1:4200`.
 
 ## Smallest useful example
 
 ```ts
-import { renderVisualFlow } from "@sentimental37/visual-flow";
+import { renderVisualFlow } from "@lumeflow/core";
 
-const { svg } = renderVisualFlow({
+const diagram = {
   schemaVersion: 1,
   id: "request-path",
   kind: "architecture",
@@ -76,27 +79,154 @@ const { svg } = renderVisualFlow({
     { from: "web", to: "api", variant: "accent", animated: true },
     { from: "api", to: "data", label: "query" }
   ]
-});
+} as const;
+
+const { svg } = renderVisualFlow(diagram);
 ```
 
-See [framework integrations](docs/FRAMEWORKS.md), the [core package guide](packages/visual-flow/README.md), and the checked-in [examples](packages/visual-flow/examples).
+The source remains ordinary data:
 
-## Use the agent skill
+```text
+LumeFlow JSON → validate → deterministic layout → SVG/interactive canvas → export
+```
 
-Copy `agent-skills/create-visual-flow-diagram` into the skills directory used by your agent, or let an agent read it directly from this repository. The skill tells agents to keep `*.visual-flow.json` as source, validate it, render SVG and standalone HTML, visually inspect the result, and use Mermaid only as a migration input.
+## Framework recipes
 
-Inside this repository, after `npm run build`:
+### React
+
+```tsx
+import { VisualFlow } from "@lumeflow/react";
+import "@lumeflow/react/styles.css";
+
+export function Architecture({ spec }) {
+  return <VisualFlow spec={spec} />;
+}
+```
+
+Set `editable`, `onSpecChange`, `onSelectionChange`, and `onCanvasDrop` to turn the renderer into an editor.
+
+### Next.js
+
+```tsx
+import { VisualFlowStatic } from "@lumeflow/next";
+
+export default function Page() {
+  return <VisualFlowStatic spec={diagram} />;
+}
+```
+
+Use `@lumeflow/next/client` when the page needs editing, pan/zoom, selection, or client-side interaction.
+
+### Angular
+
+```ts
+import { Component } from "@angular/core";
+import { VisualFlowAngularComponent } from "@lumeflow/angular";
+
+@Component({
+  standalone: true,
+  imports: [VisualFlowAngularComponent],
+  template: `<visual-flow-diagram [spec]="diagram" />`,
+})
+export class ArchitectureComponent {
+  diagram = diagram;
+}
+```
+
+### Vue, Svelte, Solid, Lit, Astro, or plain JavaScript
+
+```ts
+import { defineVisualFlowElement } from "@lumeflow/core/element";
+
+defineVisualFlowElement();
+document.querySelector("visual-flow")!.spec = diagram;
+```
+
+```html
+<visual-flow pan-zoom="true"></visual-flow>
+```
+
+See [docs/FRAMEWORKS.md](docs/FRAMEWORKS.md) for lifecycle, SSR, editing, and version guidance.
+
+## Studio workflow
+
+1. Open `/builder/` and choose an architecture, workflow, or lifecycle template.
+2. Drag a component onto the canvas—or click a palette item to add it precisely.
+3. Connect nodes with handles and reposition them directly.
+4. Select a node to edit its label, description, semantic type, icon, and badges.
+5. Tune built-in themes or individual color and radius tokens.
+6. Review or edit the underlying JSON, then validate and apply it.
+7. Export JSON, SVG, HTML, PNG, or WebP.
+
+Drafts are stored locally in the browser and restored automatically. The builder does not require an account or backend.
+
+## CLI
+
+After building the workspace, the CLI can be run from its package or a packed archive:
 
 ```powershell
-node agent-skills/create-visual-flow-diagram/scripts/render-visual-flow.mjs packages/visual-flow/examples/cloud-commerce.visual-flow.json artifacts/rendered
+npx lumeflow validate docs/architecture.visual-flow.json
+npx lumeflow inspect docs/architecture.visual-flow.json
+npx lumeflow render docs/architecture.visual-flow.json --format svg --output docs/architecture.svg
+npx lumeflow schema --output visual-flow.schema.json
+npx lumeflow migrate-mermaid old-flow.mmd --output migrated.visual-flow.json
+```
+
+Mermaid migration imports topology and labels; it does not claim style fidelity.
+
+## Agent skill
+
+The reusable skill lives at [`agent-skills/create-lumeflow-diagram`](agent-skills/create-lumeflow-diagram). It instructs an agent to treat `*.visual-flow.json` as the maintained source, validate before rendering, generate SVG and standalone HTML, inspect the result visually, and use Mermaid only as a migration input.
+
+After `npm run build`:
+
+```powershell
+node agent-skills/create-lumeflow-diagram/scripts/render-lumeflow.mjs packages/visual-flow/examples/cloud-commerce.visual-flow.json artifacts/rendered
+```
+
+## Repository structure
+
+```text
+apps/angular-demo                     Full documentation and API showcase
+apps/gallery                          Focused visual example gallery
+packages/visual-flow                  Framework-neutral core
+packages/visual-flow-react            React adapter and editor
+packages/visual-flow-next             Next.js static and client adapters
+packages/visual-flow-angular          Angular standalone adapter
+packages/visual-flow-cli              CLI and Mermaid topology migration
+packages/visual-flow-studio           Full-screen visual builder
+agent-skills/create-lumeflow-diagram  Agent authoring skill
+docs                                  Framework guide and screenshots
+scripts                               Packaging and combined-site assembly
 ```
 
 ## Quality gates
 
 ```powershell
 npm run verify
+npm run build:site
 npm run pack
 npm run verify:distribution
 ```
 
-The repository uses the MIT License. Package publication is intentionally not automatic: publishing to npm or GitHub Packages still requires credentials and an explicit release decision.
+`npm run verify` builds, typechecks, and tests every workspace. Distribution verification checks all five public package archives and their publication manifests.
+
+## Deployment
+
+The root [`vercel.json`](vercel.json) builds one static production artifact: the Angular showcase at `/` and LumeFlow Studio at `/builder/`. Vercel can deploy it directly from the repository or with `vercel --prod`.
+
+## Security and data boundaries
+
+- Diagram labels and metadata are treated as data and escaped before SVG output.
+- The default renderer does not execute user-provided markup.
+- Studio drafts stay in browser storage unless the user exports them.
+- The Angular adapter guards browser-only work for server rendering.
+- Rendering honors reduced-motion preferences and emits accessible SVG titles and descriptions.
+
+## Status
+
+LumeFlow is at `0.1.0` and under active development. Public npm publication, collaborative cloud storage, and real-time multi-user editing are not part of the current release.
+
+## License
+
+[MIT](LICENSE) © 2026 LumeFlow contributors.

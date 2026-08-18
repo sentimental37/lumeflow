@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
-import { VisualFlowAngularComponent } from "@sentimental37/visual-flow-angular";
-import type { VisualFlowSpec } from "@sentimental37/visual-flow";
+import { VisualFlowAngularComponent } from "@lumeflow/angular";
+import type { VisualFlowSpec } from "@lumeflow/core";
 
 @Component({
   selector: "test-consumer",

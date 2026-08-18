@@ -1,16 +1,16 @@
-# `@sentimental37/visual-flow-angular`
+# `@lumeflow/angular`
 
-Standalone Angular component for portable `@sentimental37/visual-flow` diagrams. The package is published in Angular Package Format with partial-Ivy metadata, supports Angular 17 through 22, and guards browser-only rendering so server-side rendering can import it safely.
+Standalone Angular component for portable `@lumeflow/core` diagrams. The package is published in Angular Package Format with partial-Ivy metadata, supports Angular 17 through 22, and guards browser-only rendering so server-side rendering can import it safely.
 
 ```powershell
-npm install @sentimental37/visual-flow @sentimental37/visual-flow-angular
+npm install @lumeflow/core @lumeflow/angular
 ```
 
 Import the standalone component directly:
 
 ```ts
 import { Component } from "@angular/core";
-import { VisualFlowAngularComponent } from "@sentimental37/visual-flow-angular";
+import { VisualFlowAngularComponent } from "@lumeflow/angular";
 
 @Component({
   standalone: true,

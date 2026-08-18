@@ -4,12 +4,12 @@ export default defineConfig([
   {
     entry: ["src/index.ts"],
     format: ["esm", "cjs"],
-    dts: { resolve: [/^@sentimental37\//] },
+    dts: { resolve: [/^@lumeflow\//] },
     sourcemap: true,
     clean: true,
     target: "node22",
     platform: "node",
-    noExternal: [/^@sentimental37\//],
+    noExternal: [/^@lumeflow\//],
   },
   {
     entry: ["src/cli.ts"],
@@ -19,7 +19,7 @@ export default defineConfig([
     clean: false,
     target: "node22",
     platform: "node",
-    noExternal: [/^@sentimental37\//],
+    noExternal: [/^@lumeflow\//],
     banner: { js: "#!/usr/bin/env node" },
   },
 ]);

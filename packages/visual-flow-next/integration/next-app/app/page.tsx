@@ -1,5 +1,5 @@
-import { VisualFlowStatic, type VisualFlowSpec } from "@sentimental37/visual-flow-next";
-import { VisualFlowClient } from "@sentimental37/visual-flow-next/client";
+import { VisualFlowStatic, type VisualFlowSpec } from "@lumeflow/next";
+import { VisualFlowClient } from "@lumeflow/next/client";
 
 const spec: VisualFlowSpec = {
   schemaVersion: 1,

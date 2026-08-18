@@ -1,15 +1,15 @@
-# `@sentimental37/visual-flow-next`
+# `@lumeflow/next`
 
 Next.js adapter with separate server and client entry points. It supports the App Router and Pages Router without forcing every diagram into the client bundle.
 
 ```powershell
-npm install @sentimental37/visual-flow-next react react-dom next
+npm install @lumeflow/next react react-dom next
 ```
 
 Use the server-safe component for documentation, SEO, static exports, and read-only diagrams:
 
 ```tsx
-import { VisualFlowStatic } from "@sentimental37/visual-flow-next";
+import { VisualFlowStatic } from "@lumeflow/next";
 
 export default async function ArchitecturePage() {
   const spec = await loadArchitecture();
@@ -21,12 +21,12 @@ Use the explicit client entry point for pan, zoom, editing, selection, drag/drop
 
 ```tsx
 // app/layout.tsx
-import "@sentimental37/visual-flow-next/styles.css";
+import "@lumeflow/next/styles.css";
 ```
 
 ```tsx
 // app/architecture/page.tsx — a Server Component may pass a plain JSON spec
-import { VisualFlowClient } from "@sentimental37/visual-flow-next/client";
+import { VisualFlowClient } from "@lumeflow/next/client";
 
 export default function Page() {
   return <div style={{ height: 720 }}><VisualFlowClient spec={spec} /></div>;

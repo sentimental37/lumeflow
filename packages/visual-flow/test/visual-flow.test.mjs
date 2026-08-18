@@ -33,7 +33,7 @@ test("validates a complete diagram and reports broken references", async () => {
   const result = validateVisualFlow(broken);
   assert.equal(result.valid, false);
   assert.match(result.issues[0].message, /Unknown target node/);
-  assert.throws(() => assertVisualFlow(broken), /Invalid Visual Flow diagram/);
+  assert.throws(() => assertVisualFlow(broken), /Invalid LumeFlow diagram/);
 });
 
 test("lays out dagre diagrams deterministically with finite dimensions", async () => {

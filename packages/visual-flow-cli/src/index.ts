@@ -1,2 +1,2 @@
 export * from "./migrate.js";
-export { VISUAL_FLOW_SCHEMA, validateVisualFlow, renderVisualFlow, renderStandaloneHtml, layoutVisualFlow } from "@sentimental37/visual-flow";
+export { VISUAL_FLOW_SCHEMA, validateVisualFlow, renderVisualFlow, renderStandaloneHtml, layoutVisualFlow } from "@lumeflow/core";

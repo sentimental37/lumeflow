@@ -5,11 +5,11 @@ import { resolve } from "node:path";
 const root = resolve(import.meta.dirname, "..");
 const output = resolve(root, "artifacts", "packages");
 const expected = [
-  "sentimental37-visual-flow-0.1.0.tgz",
-  "sentimental37-visual-flow-angular-0.1.0.tgz",
-  "sentimental37-visual-flow-react-0.1.0.tgz",
-  "sentimental37-visual-flow-next-0.1.0.tgz",
-  "sentimental37-visual-flow-cli-0.1.0.tgz",
+  "lumeflow-core-0.1.0.tgz",
+  "lumeflow-angular-0.1.0.tgz",
+  "lumeflow-react-0.1.0.tgz",
+  "lumeflow-next-0.1.0.tgz",
+  "lumeflow-cli-0.1.0.tgz",
 ];
 
 assert.ok(existsSync(output), "Run npm run pack before distribution verification");

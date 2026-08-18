@@ -1,14 +1,14 @@
 <main [attr.data-site-theme]="siteTheme()">
   <header class="topbar">
-    <a class="brand" href="#overview" aria-label="Visual Flow Kit home">
+    <a class="brand" href="#overview" aria-label="LumeFlow home">
       <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
-      <span>Visual Flow <b>Kit</b></span>
+      <span>LumeFlow</span>
       <small>Angular reference</small>
     </a>
     <nav aria-label="Main navigation">
+      <a class="nav-builder" href="builder/">Builder</a>
       <a href="#playground">Playground</a>
       <a href="#capabilities">Capability map</a>
-      <a href="#features">Features</a>
       <a href="#api">API</a>
       <a href="#frameworks">Frameworks</a>
     </nav>
@@ -17,7 +17,7 @@
         <button type="button" [class.active]="siteTheme() === 'light'" [attr.aria-pressed]="siteTheme() === 'light'" (click)="setSiteTheme('light')"><span aria-hidden="true">☼</span><em>Light</em></button>
         <button type="button" [class.active]="siteTheme() === 'dark'" [attr.aria-pressed]="siteTheme() === 'dark'" (click)="setSiteTheme('dark')"><span aria-hidden="true">◐</span><em>Dark</em></button>
       </div>
-      <a class="repo-link" href="https://github.com/sentimental37/visual-flow-kit">
+      <a class="repo-link" href="https://github.com/sentimental37/lumeflow">
         <span class="github-dot" aria-hidden="true"></span>
         GitHub <b>↗</b>
       </a>
@@ -32,8 +32,8 @@
         Design expressive architecture, workflow, data-flow, sequence, and lifecycle diagrams from portable JSON—then render, customize, edit, validate, and export them anywhere on the web.
       </p>
       <div class="hero-actions">
-        <a class="primary-action" href="#playground">Open the live playground <span>↓</span></a>
-        <a class="secondary-action" href="#api">Explore every API</a>
+        <a class="primary-action" href="builder/">Open the visual builder <span>↗</span></a>
+        <a class="secondary-action" href="#playground">Try the live playground</a>
       </div>
       <div class="hero-proof">
         <span><i class="status-dot"></i> Angular 17–22</span>
@@ -42,10 +42,10 @@
       </div>
     </div>
 
-    <div class="hero-visual" aria-label="Visual Flow capability preview">
+    <div class="hero-visual" aria-label="LumeFlow capability preview">
       <div class="orbit orbit-one"></div>
       <div class="orbit orbit-two"></div>
-      <div class="hero-node hero-node-core"><small>ENGINE</small><b>Visual Flow</b><span>portable visual system</span></div>
+      <div class="hero-node hero-node-core"><small>ENGINE</small><b>LumeFlow</b><span>portable visual system</span></div>
       <div class="hero-node hero-node-a"><i>NG</i><b>Angular</b><span>native adapter</span></div>
       <div class="hero-node hero-node-b"><i>&#123; &#125;</i><b>JSON</b><span>source of truth</span></div>
       <div class="hero-node hero-node-c"><i>SVG</i><b>Export</b><span>pixel perfect</span></div>
@@ -222,6 +222,38 @@
     </div>
   </section>
 
+  <section class="section builder-section" id="builder">
+    <header class="section-heading split-heading">
+      <div>
+        <p class="eyebrow"><span></span> Full-screen visual Studio</p>
+        <h2>Build it visually.<br><em>Keep it as code.</em></h2>
+      </div>
+      <p>The builder is a separate, focused workspace—not a mockup. Drag components, connect systems, tune every token, validate the portable source, and export production-ready assets.</p>
+    </header>
+
+    <div class="builder-showcase">
+      <a class="builder-preview" href="builder/" aria-label="Open LumeFlow Studio">
+        <img src="assets/builder-studio.png" alt="LumeFlow Studio with component palette, editable diagram canvas, and property inspector" />
+        <span class="builder-preview-action"><i aria-hidden="true">↗</i><b>Launch Studio</b><small>Open the separate builder page</small></span>
+      </a>
+      <article class="builder-story">
+        <span class="builder-pill"><i></i> READY TO BUILD</span>
+        <h3>From blank canvas to reviewable architecture.</h3>
+        <p>Your diagram remains a portable, deterministic JSON document. The Studio edits that document directly, so visual authoring never traps the result inside one UI.</p>
+        <div class="builder-feature-list">
+          <div><span>01</span><b>Drag and connect</b><small>Components, handles, groups, and precise positioning.</small></div>
+          <div><span>02</span><b>Inspect and style</b><small>Properties, semantic roles, badges, themes, and live tokens.</small></div>
+          <div><span>03</span><b>Validate and persist</b><small>Schema checks plus automatic local draft recovery.</small></div>
+          <div><span>04</span><b>Export anywhere</b><small>JSON, SVG, HTML, PNG, and WebP from one source.</small></div>
+        </div>
+        <div class="builder-launch-row">
+          <a class="primary-action" href="builder/">Start building <span>↗</span></a>
+          <small>Runs entirely in your browser. No account required.</small>
+        </div>
+      </article>
+    </div>
+  </section>
+
   <section class="section capability-section" id="capabilities">
     <header class="section-heading capability-heading">
       <div>
@@ -296,7 +328,7 @@
       <article><span class="feature-number">04</span><div class="feature-icon">A11</div><h3>Accessible by construction</h3><p>Every SVG has a title, description, semantic role, keyboard-focusable nodes, and useful accessible labels. Motion honors reduced-motion preferences.</p><code>role="img" · aria-labelledby</code></article>
       <article><span class="feature-number">05</span><div class="feature-icon">SEC</div><h3>Data, never executable markup</h3><p>Visible strings are XML-escaped. Labels and metadata are treated as data, keeping the default rendering boundary predictable and safe.</p><code>escapeXml(value)</code></article>
       <article><span class="feature-number">06</span><div class="feature-icon">DET</div><h3>Deterministic everywhere</h3><p>The same source creates the same positions and SVG on a server, in Angular, inside Next.js, or from the command line.</p><code>spec → layout → SVG</code></article>
-      <article><span class="feature-number">07</span><div class="feature-icon">CI</div><h3>Built for source control</h3><p>Readable JSON, a bundled schema, focused validation issues, CLI gates, Mermaid migration, and agent guidance make diagrams part of delivery.</p><code>visual-flow validate</code></article>
+      <article><span class="feature-number">07</span><div class="feature-icon">CI</div><h3>Built for source control</h3><p>Readable JSON, a bundled schema, focused validation issues, CLI gates, Mermaid migration, and agent guidance make diagrams part of delivery.</p><code>lumeflow validate</code></article>
     </div>
   </section>
 
@@ -418,11 +450,11 @@
     <div class="footer-cta">
       <p class="eyebrow"><span></span> Ready to draw differently?</p>
       <h2>Make architecture<br><em>impossible to ignore.</em></h2>
-      <p>Start with the Angular adapter, keep the source portable, and let Visual Flow carry the story across every surface.</p>
-      <div class="footer-install"><span>$</span><code>npm install &#64;sentimental37/visual-flow &#64;sentimental37/visual-flow-angular</code><a href="https://github.com/sentimental37/visual-flow-kit">Open GitHub ↗</a></div>
+      <p>Start with the Angular adapter, keep the source portable, and let LumeFlow carry the story across every surface.</p>
+      <div class="footer-install"><span>$</span><code>npm install &#64;lumeflow/core &#64;lumeflow/angular</code><a href="builder/">Open Builder ↗</a></div>
     </div>
     <div class="footer-bottom">
-      <a class="brand" href="#overview"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>Visual Flow <b>Kit</b></span></a>
+      <a class="brand" href="#overview"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>LumeFlow</span></a>
       <span>Framework-neutral diagram infrastructure</span>
       <span>Built with Angular · Powered by portable JSON</span>
     </div>

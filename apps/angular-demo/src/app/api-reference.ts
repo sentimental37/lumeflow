@@ -49,9 +49,9 @@ export const apiPackages: readonly ApiPackage[] = [
   {
     id: "core",
     label: "Core",
-    packageName: "@sentimental37/visual-flow",
+    packageName: "@lumeflow/core",
     summary: "Framework-neutral contracts, layout, rendering, validation, themes, browser mounting, and exports.",
-    install: "npm install @sentimental37/visual-flow",
+    install: "npm install @lumeflow/core",
     entries: [
       {
         name: "renderVisualFlow",
@@ -133,9 +133,9 @@ export const apiPackages: readonly ApiPackage[] = [
   {
     id: "angular",
     label: "Angular",
-    packageName: "@sentimental37/visual-flow-angular",
+    packageName: "@lumeflow/angular",
     summary: "Native standalone Angular lifecycle adapter with strict templates and an SSR guard.",
-    install: "npm install @sentimental37/visual-flow @sentimental37/visual-flow-angular",
+    install: "npm install @lumeflow/core @lumeflow/angular",
     entries: [
       {
         name: "VisualFlowAngularComponent",
@@ -173,9 +173,9 @@ export const apiPackages: readonly ApiPackage[] = [
   {
     id: "react",
     label: "React",
-    packageName: "@sentimental37/visual-flow-react",
+    packageName: "@lumeflow/react",
     summary: "React 18/19 read-only and editable canvas powered by React Flow while preserving the portable contract.",
-    install: "npm install @sentimental37/visual-flow @sentimental37/visual-flow-react react react-dom",
+    install: "npm install @lumeflow/core @lumeflow/react react react-dom",
     entries: [
       {
         name: "VisualFlow",
@@ -202,9 +202,9 @@ export const apiPackages: readonly ApiPackage[] = [
   {
     id: "next",
     label: "Next.js",
-    packageName: "@sentimental37/visual-flow-next",
+    packageName: "@lumeflow/next",
     summary: "Explicit server and client entries for App Router, Pages Router, static export, and self-hosted Next.js.",
-    install: "npm install @sentimental37/visual-flow-next react react-dom next",
+    install: "npm install @lumeflow/next react react-dom next",
     entries: [
       {
         name: "VisualFlowStatic",
@@ -213,7 +213,7 @@ export const apiPackages: readonly ApiPackage[] = [
       },
       {
         name: "VisualFlowClient",
-        signature: "import { VisualFlowClient } from '@sentimental37/visual-flow-next/client'",
+        signature: "import { VisualFlowClient } from '@lumeflow/next/client'",
         description: "Client boundary for editing and interaction with deterministic SVG during server and first client render.",
         notes: "Hydrates the React Flow canvas only after mount to avoid server/client drift.",
       },
@@ -227,9 +227,9 @@ export const apiPackages: readonly ApiPackage[] = [
   {
     id: "element",
     label: "Web Component",
-    packageName: "@sentimental37/visual-flow/element",
+    packageName: "@lumeflow/core/element",
     summary: "Standards-based integration for Vue, Svelte, Solid, Lit, Astro islands, and plain browser applications.",
-    install: "npm install @sentimental37/visual-flow",
+    install: "npm install @lumeflow/core",
     entries: [
       {
         name: "spec",
@@ -261,33 +261,33 @@ export const apiPackages: readonly ApiPackage[] = [
   {
     id: "cli",
     label: "CLI",
-    packageName: "@sentimental37/visual-flow-cli",
+    packageName: "@lumeflow/cli",
     summary: "Portable validation, inspection, schema generation, Mermaid migration, and deterministic rendering for CI.",
-    install: "npm install --save-dev @sentimental37/visual-flow-cli",
+    install: "npm install --save-dev @lumeflow/cli",
     entries: [
       {
         name: "validate",
-        signature: "visual-flow validate <diagram.visual-flow.json>",
+        signature: "lumeflow validate <diagram.visual-flow.json>",
         description: "Prints every issue and exits non-zero when the source contract is invalid.",
       },
       {
         name: "render",
-        signature: "visual-flow render <input> --format svg|html|json --output <file>",
+        signature: "lumeflow render <input> --format svg|html|json --output <file>",
         description: "Renders source-controlled artifacts without a browser.",
       },
       {
         name: "inspect",
-        signature: "visual-flow inspect <diagram.visual-flow.json>",
+        signature: "lumeflow inspect <diagram.visual-flow.json>",
         description: "Prints final dimensions and positioned node geometry for diagnostics and automation.",
       },
       {
         name: "schema",
-        signature: "visual-flow schema [--output visual-flow.schema.json]",
+        signature: "lumeflow schema [--output visual-flow.schema.json]",
         description: "Writes or prints the bundled JSON Schema.",
       },
       {
         name: "migrate-mermaid",
-        signature: "visual-flow migrate-mermaid <diagram.mmd> --title <title> --output <file>",
+        signature: "lumeflow migrate-mermaid <diagram.mmd> --title <title> --output <file>",
         description: "Migrates basic flowchart, sequence, and state topology into the portable contract for review in Studio.",
       },
     ],
@@ -419,7 +419,7 @@ export const codeSamples: readonly CodeSample[] = [
     label: "Angular",
     language: "typescript",
     code: `import { Component } from "@angular/core";
-import { VisualFlowAngularComponent } from "@sentimental37/visual-flow-angular";
+import { VisualFlowAngularComponent } from "@lumeflow/angular";
 
 @Component({
   standalone: true,
@@ -443,7 +443,7 @@ export class ArchitecturePage {}`,
   renderVisualFlow,
   validateVisualFlow,
   type VisualFlowSpec,
-} from "@sentimental37/visual-flow";
+} from "@lumeflow/core";
 
 const validation = validateVisualFlow(spec);
 if (!validation.valid) throw new Error("Invalid diagram");
@@ -475,7 +475,7 @@ renderVisualFlow(spec, {
     label: "Web component",
     language: "typescript",
     code: `import { defineVisualFlowElement }
-  from "@sentimental37/visual-flow/element";
+  from "@lumeflow/core/element";
 
 defineVisualFlowElement();
 
@@ -488,10 +488,10 @@ element.addEventListener("visual-flow-ready", onReady);`,
     id: "cli",
     label: "CLI + CI",
     language: "powershell",
-    code: `npx visual-flow validate architecture.visual-flow.json
-npx visual-flow inspect architecture.visual-flow.json
-npx visual-flow render architecture.visual-flow.json ` +
+    code: `npx lumeflow validate architecture.visual-flow.json
+npx lumeflow inspect architecture.visual-flow.json
+npx lumeflow render architecture.visual-flow.json ` +
       `--format svg --output docs/architecture.svg
-npx visual-flow schema --output visual-flow.schema.json`,
+npx lumeflow schema --output visual-flow.schema.json`,
   },
 ] as const;

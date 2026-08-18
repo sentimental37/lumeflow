@@ -1,5 +1,5 @@
 import { BaseEdge, EdgeLabelRenderer, getBezierPath, getSmoothStepPath, type Edge, type EdgeProps } from "@xyflow/react";
-import type { DiagramEdge } from "@sentimental37/visual-flow";
+import type { DiagramEdge } from "@lumeflow/core";
 
 export interface VisualFlowEdgeData extends Record<string, unknown> {
   edge: DiagramEdge;

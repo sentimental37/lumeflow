@@ -1,8 +1,8 @@
 {
-  "name": "@sentimental37/visual-flow-gallery",
+  "name": "@lumeflow/gallery",
   "version": "0.1.0",
   "private": true,
-  "description": "Visual Flow Kit interactive demo gallery.",
+  "description": "LumeFlow interactive demo gallery.",
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
@@ -12,8 +12,8 @@
     "clean": "rimraf dist .turbo"
   },
   "dependencies": {
-    "@sentimental37/visual-flow": "^0.1.0",
-    "@sentimental37/visual-flow-react": "^0.1.0",
+    "@lumeflow/core": "^0.1.0",
+    "@lumeflow/react": "^0.1.0",
     "@xyflow/react": "^12.11.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

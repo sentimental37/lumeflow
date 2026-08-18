@@ -16,7 +16,13 @@
             "index": "src/index.html",
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
-            "assets": [],
+            "assets": [
+              {
+                "glob": "builder-studio.png",
+                "input": "public",
+                "output": "assets"
+              }
+            ],
             "styles": ["src/styles.css"]
           },
           "configurations": {

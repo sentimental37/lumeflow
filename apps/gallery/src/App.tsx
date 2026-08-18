@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { VisualFlow } from "@sentimental37/visual-flow-react";
+import { VisualFlow } from "@lumeflow/react";
 import { demos, type DemoKey } from "./diagrams.js";
 
 const demoKeys = Object.keys(demos) as DemoKey[];
@@ -15,8 +15,8 @@ export function App() {
   return (
     <main className="gallery-shell">
       <header className="nav">
-        <a className="wordmark" href="#top"><span><Mark /></span><strong>Visual Flow <i>Kit</i></strong></a>
-        <nav aria-label="Primary navigation"><a href="#gallery">Gallery</a><a href="#frameworks">Frameworks</a><a href="https://github.com/sentimental37/visual-flow-kit">GitHub</a></nav>
+        <a className="wordmark" href="#top"><span><Mark /></span><strong>LumeFlow <i>Kit</i></strong></a>
+        <nav aria-label="Primary navigation"><a href="#gallery">Gallery</a><a href="#frameworks">Frameworks</a><a href="https://github.com/sentimental37/lumeflow">GitHub</a></nav>
         <a className="builder-link" href="http://127.0.0.1:4317">Open builder <span>↗</span></a>
       </header>
 

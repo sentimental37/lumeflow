@@ -1,6 +1,6 @@
-# `@sentimental37/visual-flow` skills
+# `@lumeflow/core` skills
 
-Purpose: the framework-neutral Visual Flow contract, validation, layout, SVG rendering, themes, motion, and exports.
+Purpose: the framework-neutral LumeFlow contract, validation, layout, SVG rendering, themes, motion, and exports.
 
 Minimum verification:
 

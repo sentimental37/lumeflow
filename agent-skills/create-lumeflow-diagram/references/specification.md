@@ -1,4 +1,4 @@
-# Visual Flow v1 specification guide
+# LumeFlow v1 specification guide
 
 The TypeScript contract in `packages/visual-flow/src/types.ts` and runtime validator in `packages/visual-flow/src/schema.ts` are authoritative. This guide is the compact authoring reference for agents.
 

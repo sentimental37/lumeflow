@@ -1,5 +1,0 @@
-interface:
-  display_name: "Create Visual Flow Diagram"
-  short_description: "Build polished source-controlled visual diagrams"
-  brand_color: "#31E6C0"
-  default_prompt: "Use $create-visual-flow-diagram to create a polished architecture diagram and render it as SVG and HTML."

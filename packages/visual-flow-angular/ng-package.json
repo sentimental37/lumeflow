@@ -6,6 +6,6 @@
     "flatModuleFile": "visual-flow-angular"
   },
   "allowedNonPeerDependencies": [
-    "@sentimental37/visual-flow"
+    "@lumeflow/core"
   ]
 }

@@ -1,4 +1,4 @@
-import type { DiagramEdge, DiagramKind, DiagramNode, VisualFlowSpec } from "@sentimental37/visual-flow";
+import type { DiagramEdge, DiagramKind, DiagramNode, VisualFlowSpec } from "@lumeflow/core";
 
 function cleanLabel(value: string): string {
   return value.trim().replace(/^[[({]+|[\])}]+$/g, "").replace(/^['"]|['"]$/g, "").trim();

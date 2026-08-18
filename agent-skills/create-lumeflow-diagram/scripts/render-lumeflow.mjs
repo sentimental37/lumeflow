@@ -10,7 +10,7 @@ const cli = resolve(repositoryRoot, "packages", "visual-flow-cli", "dist", "cli.
 const [inputArgument, outputArgument] = process.argv.slice(2);
 
 if (!inputArgument) {
-  console.error("Usage: render-visual-flow.mjs <source.visual-flow.json> [output-directory]");
+  console.error("Usage: render-lumeflow.mjs <source.visual-flow.json> [output-directory]");
   process.exit(1);
 }
 
@@ -27,4 +27,4 @@ function run(args) {
 run(["validate", input]);
 run(["render", input, "--format", "svg", "--output", resolve(outputDirectory, `${stem}.svg`)]);
 run(["render", input, "--format", "html", "--output", resolve(outputDirectory, `${stem}.html`)]);
-console.log(`PASS Visual Flow artifacts rendered under ${outputDirectory}`);
+console.log(`PASS LumeFlow artifacts rendered under ${outputDirectory}`);

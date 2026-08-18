@@ -1,5 +1,5 @@
 {
-  "name": "@sentimental37/visual-flow",
+  "name": "@lumeflow/core",
   "version": "0.1.0",
   "description": "Framework-neutral visual diagram model, layout engine, SVG renderer, themes, motion, and export utilities.",
   "type": "module",

@@ -1,14 +1,14 @@
 {
-  "name": "visual-flow-kit",
+  "name": "lumeflow",
   "version": "0.1.0",
   "private": true,
   "description": "A framework-neutral diagram engine, web adapters, visual builder, CLI, and agent skill for source-controlled architecture diagrams.",
   "license": "MIT",
-  "author": "sentimental37",
+  "author": "LumeFlow contributors",
   "packageManager": "npm@10.9.2",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sentimental37/visual-flow-kit.git"
+    "url": "git+https://github.com/sentimental37/lumeflow.git"
   },
   "workspaces": [
     "packages/*",
@@ -19,11 +19,13 @@
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
     "verify": "npm run build && npm run typecheck && npm test",
-    "clean": "turbo run clean",
-    "dev": "npm run dev:studio",
-    "dev:studio": "npm run dev --workspace @sentimental37/visual-flow-studio",
-    "dev:gallery": "npm run dev --workspace @sentimental37/visual-flow-gallery",
-    "dev:angular": "npm run dev --workspace @sentimental37/visual-flow-angular-demo",
+    "clean": "turbo run clean && rimraf site-dist",
+    "dev": "npm run build:site && npm run preview:site",
+    "dev:studio": "npm run dev --workspace @lumeflow/studio",
+    "dev:gallery": "npm run dev --workspace @lumeflow/gallery",
+    "dev:angular": "npm run dev --workspace @lumeflow/angular-showcase",
+    "build:site": "turbo run build --filter=@lumeflow/studio --filter=@lumeflow/angular-showcase && node scripts/assemble-site.mjs",
+    "preview:site": "vite site-dist --host 127.0.0.1 --port 4200 --strictPort",
     "pack": "node scripts/pack.mjs",
     "verify:distribution": "node scripts/verify-distribution.mjs"
   },
@@ -32,7 +34,8 @@
     "rimraf": "^6.0.1",
     "tsup": "^8.5.1",
     "turbo": "^2.10.4",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "vite": "^8.2.1"
   },
   "engines": {
     "node": ">=20.19"

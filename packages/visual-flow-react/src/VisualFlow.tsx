@@ -16,7 +16,7 @@ import {
   type OnSelectionChangeParams,
   type XYPosition,
 } from "@xyflow/react";
-import { layoutVisualFlow, resolveTheme, type DiagramEdge, type RenderOptions, type VisualFlowSpec } from "@sentimental37/visual-flow";
+import { layoutVisualFlow, resolveTheme, type DiagramEdge, type RenderOptions, type VisualFlowSpec } from "@lumeflow/core";
 import { VisualFlowEdgeView, type VisualFlowCanvasEdge } from "./VisualFlowEdge.js";
 import { VisualFlowNodeView, type VisualFlowCanvasNode } from "./VisualFlowNode.js";
 

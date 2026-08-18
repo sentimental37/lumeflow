@@ -1,4 +1,4 @@
-import type { VisualFlowSpec } from "@sentimental37/visual-flow";
+import type { VisualFlowSpec } from "@lumeflow/core";
 
 export type AngularDemoKey = "platform" | "events" | "intelligence";
 
@@ -284,7 +284,7 @@ export const capabilityAtlas: VisualFlowSpec = {
   schemaVersion: 1,
   id: "visual-flow-capability-atlas",
   kind: "architecture",
-  title: "Visual Flow Kit · Capability Atlas",
+  title: "LumeFlow · Capability Atlas",
   description: "The complete path from portable diagram data to authoring, framework delivery, automation, and export.",
   layout: { mode: "manual", direction: "LR", margin: 76 },
   theme: "midnight-current",
@@ -314,7 +314,7 @@ export const capabilityAtlas: VisualFlowSpec = {
     { id: "web", label: "Vue · Svelte · Solid", description: "Custom element", x: 1010, y: 460, width: 214, height: 82, variant: "external", icon: "WEB" },
     { id: "astro", label: "Astro · Lit", description: "Static or island", x: 1010, y: 580, width: 214, height: 82, variant: "external", icon: "AL" },
 
-    { id: "studio", label: "Visual Flow Studio", description: "Complete builder", x: 1320, y: 100, width: 214, height: 82, variant: "service", icon: "VS" },
+    { id: "studio", label: "LumeFlow Studio", description: "Complete builder", x: 1320, y: 100, width: 214, height: 82, variant: "service", icon: "VS" },
     { id: "drag", label: "Drag + Drop", description: "Exact placement", x: 1320, y: 220, width: 214, height: 82, variant: "client", icon: "DD" },
     { id: "inspectors", label: "Inspectors", description: "Diagram + node", x: 1320, y: 340, width: 214, height: 82, variant: "decision", icon: "IN" },
     { id: "livejson", label: "Live JSON", description: "Validate as you type", x: 1320, y: 460, width: 214, height: 82, variant: "data", icon: "{}" },

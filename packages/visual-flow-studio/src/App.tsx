@@ -1,14 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
-import { downloadVisualFlow, freezeVisualFlowLayout, resolveTheme, serializeVisualFlow, validateVisualFlow, visualFlowThemes, type DiagramKind, type DiagramNode, type VisualFlowSpec, type VisualFlowTheme } from "@sentimental37/visual-flow";
-import { VisualFlow } from "@sentimental37/visual-flow-react";
+import { downloadVisualFlow, freezeVisualFlowLayout, resolveTheme, serializeVisualFlow, validateVisualFlow, visualFlowThemes, type DiagramKind, type DiagramNode, type VisualFlowSpec, type VisualFlowTheme } from "@lumeflow/core";
+import { VisualFlow } from "@lumeflow/react";
 import { cloneTemplate, palette, templates } from "./templates.js";
 
 type InspectorTab = "properties" | "theme" | "json";
-const storageKey = "visual-flow-kit-studio-v1";
+const storageKey = "lumeflow-studio-v1";
+const legacyStorageKey = "visual-flow-kit-studio-v1";
 
 function loadInitial(): VisualFlowSpec {
   try {
-    const saved = localStorage.getItem(storageKey);
+    const saved = localStorage.getItem(storageKey) ?? localStorage.getItem(legacyStorageKey);
     if (saved) {
       const parsed = JSON.parse(saved) as VisualFlowSpec;
       if (validateVisualFlow(parsed).valid) return parsed;
@@ -35,13 +36,13 @@ function Icon({ name }: { name: "flow" | "nodes" | "theme" | "code" | "download"
   return <svg className="icon" viewBox="0 0 24 24" aria-hidden="true"><path d={paths[name]} /></svg>;
 }
 
-function PaletteItem({ node }: { node: (typeof palette)[number] }) {
+function PaletteItem({ node, onAdd }: { node: (typeof palette)[number]; onAdd: () => void }) {
   const startDrag = (event: React.DragEvent) => {
     event.dataTransfer.setData("application/visual-flow-node", JSON.stringify(node));
     event.dataTransfer.effectAllowed = "copy";
   };
   return (
-    <button className={`palette-item palette-item--${node.variant}`} draggable onDragStart={startDrag} type="button" title="Drag onto the canvas">
+    <button className={`palette-item palette-item--${node.variant}`} draggable onDragStart={startDrag} onClick={onAdd} type="button" title="Drag onto the canvas or click to add">
       <span className="palette-item__icon">{node.icon}</span>
       <span><strong>{node.label}</strong><small>{node.description}</small></span>
       <span className="drag-dots" aria-hidden="true">⠿</span>
@@ -81,11 +82,15 @@ export function App() {
     setNotice("Node removed");
   };
 
-  const addNode = (node: Pick<DiagramNode, "variant" | "label" | "description" | "icon">, position = { x: 120, y: 150 }) => {
+  const addNode = (node: Pick<DiagramNode, "variant" | "label" | "description" | "icon">, position?: { x: number; y: number }) => {
     const id = `${node.variant}-${crypto.randomUUID().slice(0, 8)}`;
     setSpec((current) => {
       const existingNodes = current.layout?.mode === "manual" ? current.nodes : freezeVisualFlowLayout(current).nodes;
-      return { ...current, layout: { ...current.layout, mode: "manual" }, nodes: [...existingNodes, { ...node, id, x: position.x, y: position.y }] };
+      const nextPosition = position ?? {
+        x: 120 + (current.nodes.length % 3) * 190,
+        y: 140 + (Math.floor(current.nodes.length / 3) % 3) * 145,
+      };
+      return { ...current, layout: { ...current.layout, mode: "manual" }, nodes: [...existingNodes, { ...node, id, x: nextPosition.x, y: nextPosition.y }] };
     });
     setSelectedId(id);
     setTab("properties");
@@ -141,13 +146,14 @@ export function App() {
   return (
     <main className={`studio${theme.name === "porcelain-light" ? " studio--light" : ""}`} style={{ "--studio-accent": theme.accent, "--studio-background": theme.background, "--studio-surface": theme.surface, "--studio-text": theme.text, "--studio-muted": theme.textMuted, "--studio-border": theme.border } as React.CSSProperties}>
       <header className="topbar">
-        <div className="brand"><span className="brand__mark"><Icon name="flow" /></span><span><strong>Visual Flow</strong><small>Studio</small></span></div>
+        <a className="brand" href="../" aria-label="Back to the LumeFlow showcase"><span className="brand__mark"><Icon name="flow" /></span><span><strong>LumeFlow</strong><small>Studio</small></span></a>
         <div className="document-title">
           <span className={`status-dot${validation.valid ? " is-valid" : ""}`} />
           <input aria-label="Diagram title" value={spec.title} onChange={(event) => setSpec((current) => ({ ...current, title: event.target.value }))} />
           <small>{validation.valid ? "Saved locally" : `${validation.issues.length} model issues`}</small>
         </div>
         <nav className="topbar__actions" aria-label="Diagram actions">
+          <a className="docs-button" href="../#builder">Showcase</a>
           <button type="button" onClick={autoLayout}><Icon name="layout" />Auto layout</button>
           <span className="export-menu">
             <button type="button"><Icon name="download" />Export</button>
@@ -162,7 +168,7 @@ export function App() {
           <span>Start from</span>
           <div>{(Object.keys(templates) as Array<keyof typeof templates>).map((name) => <button className={spec.id === templates[name].id ? "is-active" : ""} key={name} type="button" onClick={() => useTemplate(name)}>{formatLabel(name)}</button>)}</div>
         </div>
-        <div className="palette-list">{palette.map((node) => <PaletteItem key={node.variant} node={node} />)}</div>
+        <div className="palette-list">{palette.map((node) => <PaletteItem key={node.variant} node={node} onAdd={() => addNode(node)} />)}</div>
         <div className="palette-tip"><span>Tip</span><p>Drag between glowing handles to connect components. Select a node to edit it.</p></div>
       </aside>
 
@@ -207,9 +213,9 @@ export function App() {
 
         {tab === "json" ? <div className="inspector-content json-panel">
           <div className="panel-heading compact"><span><Icon name="code" /></span><div><strong>Portable source</strong><small>Schema version {spec.schemaVersion}</small></div></div>
-          <textarea aria-label="Visual Flow JSON" spellCheck={false} value={jsonDraft} onChange={(event) => { setJsonDraft(event.target.value); setJsonDirty(true); }} />
+          <textarea aria-label="LumeFlow JSON" spellCheck={false} value={jsonDraft} onChange={(event) => { setJsonDraft(event.target.value); setJsonDirty(true); }} />
           <div className="json-actions"><button type="button" onClick={() => { setJsonDraft(serializeVisualFlow(spec)); setJsonDirty(false); }}>Reset</button><button className="primary-button" type="button" onClick={applyJson}>Validate & apply</button></div>
-          <p className={`validation-message${validation.valid ? " is-valid" : ""}`}>{validation.valid ? "Valid Visual Flow v1 source" : validation.issues[0]?.message}</p>
+          <p className={`validation-message${validation.valid ? " is-valid" : ""}`}>{validation.valid ? "Valid LumeFlow v1 source" : validation.issues[0]?.message}</p>
         </div> : null}
       </aside>
     </main>

@@ -1,7 +1,7 @@
 {
-  "name": "@sentimental37/visual-flow-next",
+  "name": "@lumeflow/next",
   "version": "0.1.0",
-  "description": "Next.js App Router and Pages Router adapters for server-rendered and interactive @sentimental37/visual-flow diagrams.",
+  "description": "Next.js App Router and Pages Router adapters for server-rendered and interactive @lumeflow/core diagrams.",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -33,8 +33,8 @@
     "clean": "rimraf dist .turbo integration/next-app/.next"
   },
   "dependencies": {
-    "@sentimental37/visual-flow": "^0.1.0",
-    "@sentimental37/visual-flow-react": "^0.1.0"
+    "@lumeflow/core": "^0.1.0",
+    "@lumeflow/react": "^0.1.0"
   },
   "peerDependencies": {
     "next": "^14.2 || ^15 || ^16",

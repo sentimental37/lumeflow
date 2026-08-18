@@ -1,13 +1,13 @@
 # Web framework integrations
 
-Visual Flow keeps one versioned JSON model across every integration. Framework adapters own lifecycle and rendering boundaries; they do not fork the diagram format.
+LumeFlow keeps one versioned JSON model across every integration. Framework adapters own lifecycle and rendering boundaries; they do not fork the diagram format.
 
 | Environment | Supported integration | Rendering behavior |
 | --- | --- | --- |
-| Browser / vanilla JS | `@sentimental37/visual-flow` | Direct SVG/HTML render, browser mount controller, or `<visual-flow>` custom element. |
-| React 18 and 19 | `@sentimental37/visual-flow-react` | Interactive React Flow canvas with optional editing. |
-| Next.js 14, 15, and 16 | `@sentimental37/visual-flow-next` | Server-safe static SVG plus an explicit client entry for interactivity. |
-| Angular 17 through 22 | `@sentimental37/visual-flow-angular` | Standalone component, partial-Ivy package output, SSR import guard. |
+| Browser / vanilla JS | `@lumeflow/core` | Direct SVG/HTML render, browser mount controller, or `<visual-flow>` custom element. |
+| React 18 and 19 | `@lumeflow/react` | Interactive React Flow canvas with optional editing. |
+| Next.js 14, 15, and 16 | `@lumeflow/next` | Server-safe static SVG plus an explicit client entry for interactivity. |
+| Angular 17 through 22 | `@lumeflow/angular` | Standalone component, partial-Ivy package output, SSR import guard. |
 | Vue 3 | Core custom element | Bind the `spec` property from a mounted component. |
 | Svelte / SvelteKit | Core custom element | Define the element in the browser, then assign `spec`. |
 | Solid | Core custom element | Define once and set the element property after mount. |
@@ -18,7 +18,7 @@ Visual Flow keeps one versioned JSON model across every integration. Framework a
 ## Standards-based custom element
 
 ```ts
-import { defineVisualFlowElement } from "@sentimental37/visual-flow/element";
+import { defineVisualFlowElement } from "@lumeflow/core/element";
 
 defineVisualFlowElement();
 const diagram = document.querySelector("visual-flow");

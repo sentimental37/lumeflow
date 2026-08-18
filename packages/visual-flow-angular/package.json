@@ -1,7 +1,7 @@
 {
-  "name": "@sentimental37/visual-flow-angular",
+  "name": "@lumeflow/angular",
   "version": "0.1.0",
-  "description": "Standalone Angular component for rendering portable @sentimental37/visual-flow diagrams with browser-safe lifecycle management and SSR guards.",
+  "description": "Standalone Angular component for rendering portable @lumeflow/core diagrams with browser-safe lifecycle management and SSR guards.",
   "type": "module",
   "sideEffects": false,
   "module": "./dist/fesm2022/visual-flow-angular.mjs",
@@ -13,7 +13,7 @@
     "clean": "rimraf dist .turbo test/.out"
   },
   "dependencies": {
-    "@sentimental37/visual-flow": "^0.1.0",
+    "@lumeflow/core": "^0.1.0",
     "tslib": "^2.3.0"
   },
   "peerDependencies": {

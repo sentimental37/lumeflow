@@ -18,7 +18,7 @@ import {
   type MountOptions,
   type VisualFlowController,
   type VisualFlowSpec,
-} from "@sentimental37/visual-flow";
+} from "@lumeflow/core";
 
 @Component({
   selector: "visual-flow-diagram",
@@ -48,7 +48,7 @@ export class VisualFlowAngularComponent implements AfterViewInit, OnChanges, OnD
   @Output() public readonly visualFlowError = new EventEmitter<unknown>();
 
   public get ariaLabel(): string {
-    return this.spec ? `${this.spec.title} diagram` : "Visual Flow diagram";
+    return this.spec ? `${this.spec.title} diagram` : "LumeFlow diagram";
   }
 
   public ngAfterViewInit(): void {

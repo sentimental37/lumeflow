@@ -58,7 +58,7 @@ export class VisualFlowElement extends HTMLElementBase {
 
 export function defineVisualFlowElement(tagName = "visual-flow"): typeof VisualFlowElement {
   if (typeof customElements === "undefined") {
-    throw new Error("Visual Flow custom elements can only be registered in a browser environment.");
+    throw new Error("LumeFlow custom elements can only be registered in a browser environment.");
   }
   if (!customElements.get(tagName)) customElements.define(tagName, VisualFlowElement);
   return VisualFlowElement;

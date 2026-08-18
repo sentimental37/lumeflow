@@ -1,20 +1,20 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { basename, dirname, extname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { layoutVisualFlow, renderStandaloneHtml, renderVisualFlow, serializeVisualFlow, validateVisualFlow, VISUAL_FLOW_SCHEMA, type VisualFlowSpec } from "@sentimental37/visual-flow";
+import { layoutVisualFlow, renderStandaloneHtml, renderVisualFlow, serializeVisualFlow, validateVisualFlow, VISUAL_FLOW_SCHEMA, type VisualFlowSpec } from "@lumeflow/core";
 import { migrateMermaid } from "./migrate.js";
 
 const packageRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
 function usage(): never {
-  console.log(`Visual Flow CLI
+  console.log(`LumeFlow CLI
 
 Usage:
-  visual-flow validate <diagram.visual-flow.json>
-  visual-flow render <diagram.visual-flow.json> --format svg|html|json --output <file>
-  visual-flow inspect <diagram.visual-flow.json>
-  visual-flow migrate-mermaid <diagram.mmd> --title "Title" --output <diagram.visual-flow.json>
-  visual-flow schema [--output visual-flow.schema.json]
+  lumeflow validate <diagram.visual-flow.json>
+  lumeflow render <diagram.visual-flow.json> --format svg|html|json --output <file>
+  lumeflow inspect <diagram.visual-flow.json>
+  lumeflow migrate-mermaid <diagram.mmd> --title "Title" --output <diagram.visual-flow.json>
+  lumeflow schema [--output visual-flow.schema.json]
 
 All commands exit non-zero on invalid input.`);
   process.exit(1);
@@ -40,7 +40,7 @@ async function validate(input: string): Promise<void> {
   const result = validateVisualFlow(await readSpec(input));
   for (const entry of result.issues) console.log(`${entry.severity.toUpperCase()} ${entry.path} [${entry.code}] ${entry.message}`);
   if (!result.valid) throw new Error(`Validation failed with ${result.issues.filter((entry) => entry.severity === "error").length} error(s).`);
-  console.log(`PASS ${input}: valid Visual Flow diagram${result.issues.length ? ` with ${result.issues.length} warning(s)` : ""}.`);
+  console.log(`PASS ${input}: valid LumeFlow diagram${result.issues.length ? ` with ${result.issues.length} warning(s)` : ""}.`);
 }
 
 async function render(input: string, args: string[]): Promise<void> {

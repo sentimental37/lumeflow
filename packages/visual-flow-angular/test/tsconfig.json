@@ -10,7 +10,7 @@
     "outDir": ".out",
     "baseUrl": "..",
     "paths": {
-      "@sentimental37/visual-flow-angular": ["dist"]
+      "@lumeflow/angular": ["dist"]
     }
   },
   "angularCompilerOptions": {

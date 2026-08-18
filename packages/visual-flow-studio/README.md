@@ -1,9 +1,9 @@
-# Visual Flow Studio
+# LumeFlow Studio
 
-Private demonstration and builder workspace for the publishable Visual Flow packages.
+Private demonstration and builder workspace for the publishable LumeFlow packages.
 
 ```powershell
-npm run dev --workspace @sentimental37/visual-flow-studio
+npm run dev --workspace @lumeflow/studio
 ```
 
 The Studio demonstrates:

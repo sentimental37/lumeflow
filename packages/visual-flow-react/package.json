@@ -1,7 +1,7 @@
 {
-  "name": "@sentimental37/visual-flow-react",
+  "name": "@lumeflow/react",
   "version": "0.1.0",
-  "description": "React canvas, editing primitives, and React Flow adapter for @sentimental37/visual-flow diagrams.",
+  "description": "React canvas, editing primitives, and React Flow adapter for @lumeflow/core diagrams.",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -23,7 +23,7 @@
     "clean": "rimraf dist .turbo"
   },
   "dependencies": {
-    "@sentimental37/visual-flow": "^0.1.0",
+    "@lumeflow/core": "^0.1.0",
     "@xyflow/react": "^12.11.3"
   },
   "peerDependencies": {

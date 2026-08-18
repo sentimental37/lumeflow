@@ -61,11 +61,21 @@ test("the showcase provides persistent light and dark site themes independently 
   ]);
 
   assert.match(component, /signal<SiteTheme>\("dark"\)/);
-  assert.match(component, /visual-flow-site-theme/);
+  assert.match(component, /lumeflow-site-theme/);
+  assert.match(component, /legacySiteThemeStorageKey/);
   assert.match(component, /prefers-color-scheme: light/);
   assert.match(component, /setSiteTheme/);
   assert.match(template, /data-site-theme/);
   assert.match(template, /aria-label="Site appearance"/);
   assert.match(template, /setSiteTheme\('light'\)/);
   assert.match(template, /setSiteTheme\('dark'\)/);
+});
+
+test("the showcase presents the Studio and opens it as a separate builder page", async () => {
+  const template = await readFile(templatePath, "utf8");
+  assert.match(template, /id="builder"/);
+  assert.match(template, /Full-screen visual Studio/);
+  assert.match(template, /href="builder\/"/);
+  assert.match(template, /assets\/builder-studio\.png/);
+  assert.match(template, /Runs entirely in your browser/);
 });

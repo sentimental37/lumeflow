@@ -1,4 +1,4 @@
-import type { DiagramNode, VisualFlowSpec } from "@sentimental37/visual-flow";
+import type { DiagramNode, VisualFlowSpec } from "@lumeflow/core";
 
 export const palette: Array<Pick<DiagramNode, "variant" | "label" | "description" | "icon">> = [
   { variant: "client", label: "Client / UI", description: "Browser, desktop, or operator", icon: "UI" },
@@ -75,7 +75,7 @@ const blank: VisualFlowSpec = {
   schemaVersion: 1,
   id: "new-visual-flow",
   kind: "architecture",
-  title: "Untitled Visual Flow",
+  title: "Untitled LumeFlow",
   description: "Drag components from the palette, then connect their handles.",
   layout: { mode: "manual", direction: "LR" },
   theme: "midnight-current",

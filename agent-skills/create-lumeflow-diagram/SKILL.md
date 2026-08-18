@@ -1,11 +1,11 @@
 ---
-name: create-visual-flow-diagram
-description: Create, edit, migrate, validate, and render polished source-controlled Visual Flow architecture, workflow, data-flow, sequence, and lifecycle diagrams as JSON plus SVG or standalone HTML. Use when a task asks for architecture diagrams, technical flows, system maps, data pipelines, request sequences, state machines, a diagram to replace Mermaid, or a Mermaid diagram to beautify and migrate.
+name: create-lumeflow-diagram
+description: Create, edit, migrate, validate, and render polished source-controlled LumeFlow architecture, workflow, data-flow, sequence, and lifecycle diagrams as JSON plus SVG or standalone HTML. Use when a task asks for architecture diagrams, technical flows, system maps, data pipelines, request sequences, state machines, a diagram to replace Mermaid, or a Mermaid diagram to beautify and migrate.
 ---
 
-# Create Visual Flow Diagram
+# Create LumeFlow Diagram
 
-Create diagrams from portable `*.visual-flow.json` sources using the repository's Visual Flow packages. Treat the JSON as the source of truth and generated SVG/HTML as review or publication artifacts.
+Create diagrams from portable `*.visual-flow.json` sources using the repository's LumeFlow packages. Treat the JSON as the source of truth and generated SVG/HTML as review or publication artifacts.
 
 ## Select the diagram kind
 
@@ -28,7 +28,7 @@ Read [references/specification.md](references/specification.md) before creating 
 7. Validate and render with the helper:
 
 ```powershell
-node agent-skills/create-visual-flow-diagram/scripts/render-visual-flow.mjs docs/diagrams/sources/platform.visual-flow.json docs/diagrams
+node agent-skills/create-lumeflow-diagram/scripts/render-lumeflow.mjs docs/diagrams/sources/platform.visual-flow.json docs/diagrams
 ```
 
 8. Open the rendered HTML or SVG and visually inspect the full canvas. Check labels, crossings, hierarchy, contrast, group bounds, dark/light presentation, and reduced-motion behavior.
@@ -69,8 +69,8 @@ Provide links to the source JSON and generated artifacts. State the diagram kind
 
 ## Embed in web applications
 
-- Use `@sentimental37/visual-flow-angular` for Angular standalone components.
-- Use `@sentimental37/visual-flow-react` for React applications.
-- Use `@sentimental37/visual-flow-next` for Next.js Server/Client Component boundaries.
-- Use `@sentimental37/visual-flow/element` for Vue, Svelte, Solid, Lit, Astro islands, and plain web applications.
+- Use `@lumeflow/angular` for Angular standalone components.
+- Use `@lumeflow/react` for React applications.
+- Use `@lumeflow/next` for Next.js Server/Client Component boundaries.
+- Use `@lumeflow/core/element` for Vue, Svelte, Solid, Lit, Astro islands, and plain web applications.
 - Keep `*.visual-flow.json` as the source regardless of the host framework; do not translate the model into framework-specific graph state.

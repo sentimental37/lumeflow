@@ -1,5 +1,5 @@
 import { Handle, Position, type Node, type NodeProps } from "@xyflow/react";
-import type { DiagramNode } from "@sentimental37/visual-flow";
+import type { DiagramNode } from "@lumeflow/core";
 
 export interface VisualFlowNodeData extends Record<string, unknown> {
   node: DiagramNode;

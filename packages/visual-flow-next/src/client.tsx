@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { renderVisualFlow } from "@sentimental37/visual-flow";
+import { renderVisualFlow } from "@lumeflow/core";
 import {
   VisualFlow,
   type VisualFlowProps,
-} from "@sentimental37/visual-flow-react";
+} from "@lumeflow/react";
 import "./styles.css";
 
 export interface VisualFlowClientProps extends VisualFlowProps {
@@ -38,4 +38,4 @@ export function VisualFlowClient({ staticFallback = true, ...props }: VisualFlow
   return <VisualFlow {...props} />;
 }
 
-export type { VisualFlowProps } from "@sentimental37/visual-flow-react";
+export type { VisualFlowProps } from "@lumeflow/react";

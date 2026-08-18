@@ -1,6 +1,8 @@
 node_modules/
 dist/
+site-dist/
 .turbo/
+.vercel/
 .angular/
 .next/
 coverage/

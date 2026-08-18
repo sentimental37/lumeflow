@@ -3,7 +3,7 @@ import {
   renderVisualFlow,
   type RenderOptions,
   type VisualFlowSpec,
-} from "@sentimental37/visual-flow";
+} from "@lumeflow/core";
 
 export interface VisualFlowStaticProps {
   spec: VisualFlowSpec;
@@ -33,9 +33,9 @@ export {
   renderVisualFlow,
   serializeVisualFlow,
   validateVisualFlow,
-} from "@sentimental37/visual-flow";
+} from "@lumeflow/core";
 export type {
   RenderOptions,
   VisualFlowSpec,
   VisualFlowTheme,
-} from "@sentimental37/visual-flow";
+} from "@lumeflow/core";

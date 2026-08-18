@@ -1,6 +1,6 @@
-# `@sentimental37/visual-flow-cli` skills
+# `@lumeflow/cli` skills
 
-Purpose: executable validation, layout inspection, export, schema generation, and Mermaid migration for Visual Flow sources.
+Purpose: executable validation, layout inspection, export, schema generation, and Mermaid migration for LumeFlow sources.
 
 Minimum verification:
 

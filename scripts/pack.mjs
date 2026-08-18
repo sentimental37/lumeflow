@@ -5,11 +5,11 @@ import { spawnSync } from "node:child_process";
 const root = resolve(import.meta.dirname, "..");
 const output = resolve(root, "artifacts", "packages");
 const packages = [
-  { name: "@sentimental37/visual-flow", source: "./packages/visual-flow" },
-  { name: "@sentimental37/visual-flow-angular", source: "./packages/visual-flow-angular/dist" },
-  { name: "@sentimental37/visual-flow-react", source: "./packages/visual-flow-react" },
-  { name: "@sentimental37/visual-flow-next", source: "./packages/visual-flow-next" },
-  { name: "@sentimental37/visual-flow-cli", source: "./packages/visual-flow-cli" },
+  { name: "@lumeflow/core", source: "./packages/visual-flow" },
+  { name: "@lumeflow/angular", source: "./packages/visual-flow-angular/dist" },
+  { name: "@lumeflow/react", source: "./packages/visual-flow-react" },
+  { name: "@lumeflow/next", source: "./packages/visual-flow-next" },
+  { name: "@lumeflow/cli", source: "./packages/visual-flow-cli" },
 ];
 
 rmSync(output, { recursive: true, force: true });

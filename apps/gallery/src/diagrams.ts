@@ -1,4 +1,4 @@
-import type { VisualFlowSpec } from "@sentimental37/visual-flow";
+import type { VisualFlowSpec } from "@lumeflow/core";
 
 export type DemoKey = "commerce" | "events" | "agent";
 

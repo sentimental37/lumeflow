@@ -11,8 +11,8 @@ import {
   type RasterFormat,
   type VisualFlowSpec,
   type VisualFlowTheme,
-} from "@sentimental37/visual-flow";
-import { VisualFlowAngularComponent } from "@sentimental37/visual-flow-angular";
+} from "@lumeflow/core";
+import { VisualFlowAngularComponent } from "@lumeflow/angular";
 import { apiPackages, codeSamples, frameworkSupport, schemaGroups } from "./api-reference";
 import {
   angularDemos,
@@ -25,6 +25,8 @@ import {
 
 type BuiltInThemeName = "midnight-current" | "porcelain-light" | "executive-slate";
 type SiteTheme = "light" | "dark";
+const siteThemeStorageKey = "lumeflow-site-theme";
+const legacySiteThemeStorageKey = "visual-flow-site-theme";
 type ThemeColorKey =
   | "background"
   | "backgroundAlt"
@@ -165,7 +167,8 @@ export class AppComponent {
 
   public constructor() {
     if (typeof window === "undefined") return;
-    const saved = window.localStorage.getItem("visual-flow-site-theme");
+    const saved = window.localStorage.getItem(siteThemeStorageKey)
+      ?? window.localStorage.getItem(legacySiteThemeStorageKey);
     const initial: SiteTheme = saved === "light" || saved === "dark"
       ? saved
       : window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
@@ -175,7 +178,7 @@ export class AppComponent {
 
   protected setSiteTheme(theme: SiteTheme): void {
     this.siteTheme.set(theme);
-    if (typeof window !== "undefined") window.localStorage.setItem("visual-flow-site-theme", theme);
+    if (typeof window !== "undefined") window.localStorage.setItem(siteThemeStorageKey, theme);
     this.applyDocumentTheme(theme);
   }
 

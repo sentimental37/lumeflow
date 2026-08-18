@@ -1,17 +1,17 @@
-# `@sentimental37/visual-flow`
+# `@lumeflow/core`
 
-Framework-neutral diagram-as-data for polished architecture, workflow, data-flow, sequence, and lifecycle visuals. A versioned JSON specification drives deterministic layouts, accessible SVG, lightweight motion, standalone HTML, raster export, custom elements, Angular, React, Next.js, the CLI, and Visual Flow Studio.
+Framework-neutral diagram-as-data for polished architecture, workflow, data-flow, sequence, and lifecycle visuals. A versioned JSON specification drives deterministic layouts, accessible SVG, lightweight motion, standalone HTML, raster export, custom elements, Angular, React, Next.js, the CLI, and LumeFlow Studio.
 
 ## Install
 
 ```powershell
-npm install @sentimental37/visual-flow
+npm install @lumeflow/core
 ```
 
 ## Render one specification everywhere
 
 ```ts
-import { renderVisualFlow, renderStandaloneHtml } from "@sentimental37/visual-flow";
+import { renderVisualFlow, renderStandaloneHtml } from "@lumeflow/core";
 
 const spec = {
   schemaVersion: 1,
@@ -39,14 +39,14 @@ Before an editor adds or moves a node in an automatic layout, call `freezeVisual
 ## Browser and custom element
 
 ```ts
-import { mountVisualFlow } from "@sentimental37/visual-flow";
+import { mountVisualFlow } from "@lumeflow/core";
 
 const controller = mountVisualFlow(document.querySelector("#diagram")!, spec, { panZoom: true });
 controller.update(nextSpec);
 ```
 
 ```ts
-import { defineVisualFlowElement } from "@sentimental37/visual-flow/element";
+import { defineVisualFlowElement } from "@lumeflow/core/element";
 
 defineVisualFlowElement();
 document.querySelector("visual-flow").spec = spec;
@@ -58,7 +58,7 @@ The custom-element entry is safe to import during SSR; call `defineVisualFlowEle
 
 `downloadVisualFlow` exports JSON, SVG, standalone HTML, PNG, JPEG, and WebP in browsers. Built-in themes are `midnight-current`, `porcelain-light`, and `executive-slate`; pass a partial `VisualFlowTheme` to customize any token.
 
-Runnable source specifications live in [`examples`](examples). Use `@sentimental37/visual-flow-cli` to validate and render them in CI, or Visual Flow Studio to edit them visually.
+Runnable source specifications live in [`examples`](examples). Use `@lumeflow/cli` to validate and render them in CI, or LumeFlow Studio to edit them visually.
 
 ## Security boundary
 
