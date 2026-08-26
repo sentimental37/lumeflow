@@ -7,3 +7,10 @@
 
 Please include the LumeFlow package and version, host framework and version,
 browser or Node.js version, and a minimal diagram specification whenever possible.
+
+## Contributing a change
+
+If you want to work on a reported problem or propose an implementation, follow the
+[contribution guide](CONTRIBUTING.md). It explains when to start with an issue or
+Discussion, how to set up a fork, the required verification evidence, and the
+pull-request review and merge process.
