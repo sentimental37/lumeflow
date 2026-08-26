@@ -7,7 +7,6 @@ All notable changes to LumeFlow are documented here. The project follows
 
 ### Planned
 
-- Public npm publication for the five `@lumeflow/*` packages.
 - Additional builder templates and example diagrams.
 
 ## [0.1.0] - 2026-08-18
@@ -22,6 +21,7 @@ All notable changes to LumeFlow are documented here. The project follows
 - Agent skill for creating and validating `*.visual-flow.json` diagrams.
 - Full Angular showcase, capability atlas, API reference, framework recipes, and light/dark presentation.
 - Distribution checks for all five public package archives.
+- Public npm packages for core, React, Angular, Next.js, and the CLI under the `@lumeflow` organization.
 
 [Unreleased]: https://github.com/sentimental37/lumeflow/compare/v0.1.0...HEAD
 [0.1.0]: https://github.com/sentimental37/lumeflow/releases/tag/v0.1.0

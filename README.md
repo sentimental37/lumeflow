@@ -5,6 +5,7 @@
 [Live showcase](https://sentimental37.github.io/lumeflow-showcase/) · [Open the visual builder](https://sentimental37.github.io/lumeflow-showcase/builder/) · [Framework guide](docs/FRAMEWORKS.md) · [Roadmap](ROADMAP.md) · [MIT License](LICENSE)
 
 [![CI](https://github.com/sentimental37/lumeflow/actions/workflows/ci.yml/badge.svg)](https://github.com/sentimental37/lumeflow/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/%40lumeflow%2Fcore?label=npm&color=6d8cff)](https://www.npmjs.com/package/@lumeflow/core)
 ![Release](https://img.shields.io/badge/release-v0.1.0-6d8cff)
 ![Node](https://img.shields.io/badge/node-%3E%3D20.19-31e6c0)
 ![License](https://img.shields.io/badge/license-MIT-68e59f)
@@ -13,7 +14,11 @@
 
 LumeFlow is a complete diagram system for architecture, workflow, data-flow, sequence, and lifecycle visuals. A readable JSON document is the source of truth. The same source can be edited in the browser, rendered in Angular, React, Next.js, or a Web Component, validated in CI, exported for documents, and created by an agent instead of Mermaid.
 
-> LumeFlow is currently a source release. The `@lumeflow/*` package names describe the intended public package surface; npm publication is a separate release step and has not been claimed in this README.
+> LumeFlow `0.1.0` is available from npm as `@lumeflow/core`, `@lumeflow/react`, `@lumeflow/angular`, `@lumeflow/next`, and `@lumeflow/cli`.
+
+```bash
+npm install @lumeflow/core
+```
 
 ## Why LumeFlow
 
@@ -244,7 +249,7 @@ The root [`vercel.json`](vercel.json) describes the same artifact for teams that
 
 ## Status
 
-LumeFlow is at `0.1.0` and under active development. Public npm publication, collaborative cloud storage, and real-time multi-user editing are not part of the current release.
+LumeFlow is at `0.1.0` and under active development. The five public packages are available from npm. Collaborative cloud storage and real-time multi-user editing are not part of the current release.
 
 See the [roadmap](ROADMAP.md), [changelog](CHANGELOG.md), [release process](docs/RELEASING.md), and [support guide](SUPPORT.md). Questions and design discussions belong in [GitHub Discussions](https://github.com/sentimental37/lumeflow/discussions); security reports follow the private process in [SECURITY.md](SECURITY.md).
 

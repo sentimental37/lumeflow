@@ -5,8 +5,9 @@ evidence from real integrations determine priority.
 
 ## Now — reliable 0.1 adoption
 
-- Publish `@lumeflow/core`, `react`, `angular`, `next`, and `cli` to npm.
-- Prove the five-minute installation path in clean consumer projects.
+- Prove the five-minute installation path for the published `@lumeflow/core`,
+  `react`, `angular`, `next`, and `cli` packages in clean consumer projects.
+- Exercise the OIDC release path and publish provenance on the next version.
 - Expand accessibility, keyboard editing, and export coverage.
 - Collect real-world examples across application architecture, workflows, data
   flows, sequence narratives, and lifecycle diagrams.
