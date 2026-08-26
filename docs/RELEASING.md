@@ -8,8 +8,11 @@ a failed step cannot create an ambiguous partial release.
 - Work from a clean `main` branch containing the intended release commit.
 - Use Node.js 20.19 or newer and npm 10 or newer.
 - Confirm the same version is present in all five public package manifests.
-- Confirm all five packages trust `sentimental37/lumeflow`, `publish.yml`, and
-  the GitHub `npm` environment for `npm publish`.
+- Confirm all five npm package settings list `sentimental37/lumeflow`,
+  `publish.yml`, environment name `npm`, and permission `npm publish` as their
+  trusted-publisher identity.
+- Confirm the repository has a GitHub environment named `npm` with the intended
+  deployment protection rules.
 - Keep package publishing access on the strict two-factor policy that disallows
   bypass 2FA tokens.
 
@@ -43,8 +46,9 @@ The `0.1.0` package set was bootstrapped interactively. Later releases use the
 long-lived npm token.
 
 ```powershell
-git tag -a v0.2.0 -m "LumeFlow 0.2.0"
-git push origin v0.2.0
+$version = Read-Host "Release version (X.Y.Z)"
+git tag -a "v$version" -m "LumeFlow $version"
+git push origin "v$version"
 ```
 
 Then open **Actions → Publish packages → Run workflow** and provide:
@@ -100,9 +104,10 @@ Each package's npm **Trusted Publisher** must remain configured as:
 - Allowed action: `npm publish`
 
 Trusted publishing uses GitHub OIDC instead of a long-lived npm token and creates
-provenance for public packages from public repositories. The repository already
-contains the `npm` environment and the OIDC-enabled workflow; verify both before
-each release and after any repository, workflow, or package rename.
+provenance for public packages from public repositories. The OIDC-enabled
+workflow is versioned in this repository. The `npm` environment is a GitHub
+repository setting, so audit it separately before each release and after any
+repository, workflow, environment, or package rename.
 
 Reference: [npm trusted publishing](https://docs.npmjs.com/trusted-publishers/).
 
