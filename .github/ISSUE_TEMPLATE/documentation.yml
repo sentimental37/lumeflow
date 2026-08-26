@@ -1,0 +1,56 @@
+name: Documentation improvement
+description: Report missing, unclear, incorrect, or outdated documentation or examples.
+title: "[Docs]: "
+labels:
+  - documentation
+  - triage
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Documentation area
+      options:
+        - Getting started or README
+        - Core API or schema
+        - React
+        - Next.js
+        - Angular
+        - Web Component or another framework
+        - CLI or migration
+        - Studio builder
+        - Agent skill
+        - Examples or showcase
+        - Contributing or releasing
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Page, file, or section
+      description: Link the page or identify the repository path and heading.
+      placeholder: "docs/FRAMEWORKS.md — Angular SSR"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is unclear or incorrect?
+      description: Quote only the smallest useful excerpt and explain the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: improvement
+    attributes:
+      label: Suggested improvement
+      description: Describe the information, example, or correction that would help.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and the current documentation.
+          required: true
+        - label: The report contains no private source, customer data, or credentials.
+          required: true

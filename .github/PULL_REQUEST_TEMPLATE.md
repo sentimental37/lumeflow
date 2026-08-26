@@ -1,23 +1,41 @@
+## Related issue
+
+<!-- Use "Fixes #123", "Refs #123", or "None: <brief reason>". -->
+
 ## What changed
 
-<!-- Explain the behavior or documentation change. -->
+<!-- Explain the focused behavior, code, test, or documentation change. -->
 
 ## Why
 
-<!-- Describe the user problem or maintenance need. -->
+<!-- Describe the user problem or maintenance need and why this approach fits. -->
 
 ## Verification
 
-- [ ] Focused tests were added or updated where behavior changed.
-- [ ] `npm run verify` passes.
-- [ ] `npm run pack` and `npm run verify:distribution` pass for package changes.
-- [ ] Dark and light modes were checked for visual changes.
-- [ ] Public contracts and nearby documentation were updated.
+<!-- List exact commands and outcomes. Do not write only "CI". -->
+
+```text
+npm run verify — PASS
+```
 
 ## Visual evidence
 
-<!-- Add before/after screenshots for renderer, Studio, or showcase changes. -->
+<!-- Add before/after screenshots or a short recording for visible changes. Use "Not applicable" otherwise. -->
 
-## Compatibility
+## Compatibility and risk
 
-<!-- Call out schema, package, browser, framework, or migration implications. -->
+<!-- Cover schema, packages, frameworks, browsers, SSR, migration, security, dependencies, or state "No known impact". -->
+
+## Contributor checklist
+
+- [ ] I read and followed `CONTRIBUTING.md`.
+- [ ] I added or updated focused tests where behavior changed.
+- [ ] I updated public contracts, examples, and nearby documentation where needed.
+- [ ] I ran `npm run pack` and `npm run verify:distribution` for public package changes.
+- [ ] I checked dark and light modes and added evidence for visual changes.
+- [ ] This contribution contains no credentials, customer data, or private architecture.
+- [ ] I disclosed material AI assistance below, or wrote `None`.
+
+## AI assistance
+
+<!-- Name material AI-assisted work and how you reviewed it, or write "None". -->

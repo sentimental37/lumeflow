@@ -54,6 +54,14 @@ body:
     id: context
     attributes:
       label: Additional context
+  - type: dropdown
+    id: contribution
+    attributes:
+      label: Would you like to work on a fix?
+      options:
+        - Yes, with maintainer guidance
+        - Yes, I can open a pull request
+        - Not at this time
   - type: checkboxes
     id: checks
     attributes:
