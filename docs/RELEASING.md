@@ -8,8 +8,13 @@ a failed step cannot create an ambiguous partial release.
 - Work from a clean `main` branch containing the intended release commit.
 - Use Node.js 20.19 or newer and npm 10 or newer.
 - Confirm the same version is present in all five public package manifests.
-- Be authenticated to the npm account or organization that owns `@lumeflow`.
-- Require two-factor authentication for package publication.
+- Confirm all five npm package settings list `sentimental37/lumeflow`,
+  `publish.yml`, environment name `npm`, and permission `npm publish` as their
+  trusted-publisher identity.
+- Confirm the repository has a GitHub environment named `npm` with the intended
+  deployment protection rules.
+- Keep package publishing access on the strict two-factor policy that disallows
+  bypass 2FA tokens.
 
 Never place an npm token, one-time password, or `.npmrc` in the repository.
 
@@ -34,21 +39,31 @@ npm pack ./packages/visual-flow-next --dry-run
 npm pack ./packages/visual-flow-cli --dry-run
 ```
 
-## 2. Publish the first release
+## 2. Publish packages with GitHub OIDC
 
-The first release establishes package ownership and cannot be completed without
-the npm owner's interactive authentication and 2FA approval.
+The `0.1.0` package set was bootstrapped interactively. Later releases use the
+`Publish packages` GitHub Actions workflow and npm trusted publishing, without a
+long-lived npm token.
 
 ```powershell
-npm login
-npm whoami
-
-npm publish ./packages/visual-flow --access public
-npm publish ./packages/visual-flow-react --access public
-npm publish ./packages/visual-flow-angular/dist --access public
-npm publish ./packages/visual-flow-next --access public
-npm publish ./packages/visual-flow-cli --access public
+$version = Read-Host "Release version (X.Y.Z)"
+git tag -a "v$version" -m "LumeFlow $version"
+git push origin "v$version"
 ```
+
+Then open **Actions → Publish packages → Run workflow** and provide:
+
+- `version`: the exact version without the `v` prefix
+- `confirmation`: `publish @lumeflow`
+
+The workflow checks out the matching tag, verifies every manifest and package,
+then publishes core, React, Angular, Next.js, and the CLI in dependency order.
+The `npm` environment and package-level trusted-publisher rules bind the OIDC
+identity to this repository and workflow.
+
+Use direct `npm publish` only as a documented recovery procedure. It requires
+the npm owner's interactive authentication and a current second factor; never
+store that credential in GitHub or the repository.
 
 The order is intentional: core is published first, React before Next.js, and all
 package dependencies are available before their consumers.
@@ -74,12 +89,12 @@ that already succeeded merely to hide a partial failure.
 4. Publish it as the latest release.
 5. Verify the release page and all five npm package pages anonymously.
 
-After npm publication, remove the source-release warning in the root README and
-update the Status section in the same release PR or an immediate documentation PR.
+After npm publication, update the root README, changelog, and status text in the
+same release PR or an immediate documentation PR.
 
-## 4. Configure trusted publishing for future releases
+## 4. Audit trusted publishing
 
-After the packages exist, configure each package's npm **Trusted Publisher** as:
+Each package's npm **Trusted Publisher** must remain configured as:
 
 - Provider: GitHub Actions
 - Organization or user: `sentimental37`
@@ -89,8 +104,10 @@ After the packages exist, configure each package's npm **Trusted Publisher** as:
 - Allowed action: `npm publish`
 
 Trusted publishing uses GitHub OIDC instead of a long-lived npm token and creates
-provenance for public packages from public repositories. Add the protected GitHub
-`npm` environment before enabling the workflow for a later release.
+provenance for public packages from public repositories. The OIDC-enabled
+workflow is versioned in this repository. The `npm` environment is a GitHub
+repository setting, so audit it separately before each release and after any
+repository, workflow, environment, or package rename.
 
 Reference: [npm trusted publishing](https://docs.npmjs.com/trusted-publishers/).
 
