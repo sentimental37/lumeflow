@@ -46,6 +46,14 @@ body:
     attributes:
       label: Example or proposed API
       description: Add a sanitized JSON or code example when useful.
+  - type: dropdown
+    id: contribution
+    attributes:
+      label: Would you like to help implement this?
+      options:
+        - Yes, after the direction is agreed
+        - Yes, I can open a pull request
+        - Not at this time
   - type: checkboxes
     id: checks
     attributes:

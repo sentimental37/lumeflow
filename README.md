@@ -247,6 +247,18 @@ The root [`vercel.json`](vercel.json) describes the same artifact for teams that
 - The Angular adapter guards browser-only work for server rendering.
 - Rendering honors reduced-motion preferences and emits accessible SVG titles and descriptions.
 
+## Contributing
+
+Contributions are welcome across the core renderer, framework adapters, CLI,
+Studio, showcase, documentation, examples, and agent skill. Start with the
+[contribution guide](CONTRIBUTING.md), review the public
+[governance model](GOVERNANCE.md), and use an issue or Discussion before investing
+in a large API, schema, dependency, or product-direction change.
+
+Every ready pull request is checked for a conventional title, complete review
+context, current CI, and resolved conversations. Maintainers squash-merge approved
+changes so each pull request becomes one clear, reversible commit.
+
 ## Status
 
 LumeFlow is at `0.1.0` and under active development. The five public packages are available from npm. Collaborative cloud storage and real-time multi-user editing are not part of the current release.
