@@ -12,9 +12,9 @@
     "clean": "rimraf dist .angular .turbo"
   },
   "dependencies": {
-    "@angular/common": "21.2.20",
-    "@angular/core": "21.2.20",
-    "@angular/platform-browser": "21.2.20",
+    "@angular/common": "22.1.4",
+    "@angular/core": "22.1.4",
+    "@angular/platform-browser": "22.1.4",
     "@lumeflow/core": "^0.1.0",
     "@lumeflow/angular": "^0.1.0",
     "tslib": "^2.3.0"

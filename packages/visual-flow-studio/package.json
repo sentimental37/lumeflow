@@ -14,7 +14,7 @@
   "dependencies": {
     "@lumeflow/core": "^0.1.0",
     "@lumeflow/react": "^0.1.0",
-    "@xyflow/react": "^12.11.3",
+    "@xyflow/react": "^12.11.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

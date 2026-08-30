@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "@lumeflow/core": "^0.1.0",
-    "@xyflow/react": "^12.11.3"
+    "@xyflow/react": "^12.11.5"
   },
   "peerDependencies": {
     "react": "^18 || ^19",

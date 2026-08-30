@@ -40,9 +40,9 @@
     "@angular/core": "^17.3 || ^18.2 || ^19.2 || ^20 || ^21 || ^22"
   },
   "devDependencies": {
-    "@angular/common": "21.2.20",
+    "@angular/common": "22.1.4",
     "@angular/compiler-cli": "21.2.20",
-    "@angular/core": "21.2.20",
+    "@angular/core": "22.1.4",
     "ng-packagr": "21.2.7",
     "typescript": "5.9.3"
   },
