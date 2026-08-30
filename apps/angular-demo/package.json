@@ -20,11 +20,11 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@angular/build": "^21.2.0",
-    "@angular/cli": "^21.2.0",
-    "@angular/compiler": "21.2.20",
-    "@angular/compiler-cli": "21.2.20",
+    "@angular/build": "^22.1.6",
+    "@angular/cli": "^22.1.6",
+    "@angular/compiler": "22.1.4",
+    "@angular/compiler-cli": "22.1.4",
     "rimraf": "^6.0.1",
-    "typescript": "5.9.3"
+    "typescript": "7.0.2"
   }
 }
